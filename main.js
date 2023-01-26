@@ -40,7 +40,7 @@ switch (inputValue){
 }
 
 // --------------------------------------------------------------------------------------------------------------------
-
+console.log("Algoritmo Loop condicional")
 let inpuName;
 do {
 
@@ -60,7 +60,7 @@ do {
 // --------------------------------------------------------------------------------------------------------------------
 
 
-// Simulador
+console.log("Algoritmo Simulación")
 const PERCENTAGE = 48
 class Simulator{
     
@@ -107,10 +107,15 @@ while (startSimulador.toLowerCase() === "si") {
             prestamo.getAmountToReturn()
             prestamo.getSimulatedReport()
             qtySimulator++
+        }else {
+
+        console.warn("¡¡los valores de las coutas tienen que ser numericos!!");
+    
         }
+
     } else {
 
-        console.warn("¡¡los valores tiene que ser enteros numericos!!")
+        console.warn("¡¡los valores del monto tienen que ser enteros numericos!!")
 
     }
 
@@ -118,7 +123,10 @@ while (startSimulador.toLowerCase() === "si") {
 
 }
 
-if (qtySimulator > 0) {console.log(`Gracias por realizar ${(qtySimulator > 1 ? "tus" : "tu")} ${(qtySimulator > 1 ? "simulaciones" : "simulacion")}!!`)}
+if (qtySimulator > 0) {console.log(`Gracias por realizar ${(qtySimulator > 1 ? "tus" : "tu")} ${(qtySimulator > 1 ? "simulaciones" : "simulacion")}!!`)} 
+else {
+    console.log("Decidiste no simular")
+}
 
 
 
