@@ -24,6 +24,10 @@ console.log(arrayVacio);
 let arrayCombinado = ["hola", 99,  true];
 console.log(arrayCombinado)
 ```
+
+### METODOS
+
+ `push  permite agregar elementos al final del array`
 ---
 
 ## IMPORANTE: 
