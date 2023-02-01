@@ -1,7 +1,7 @@
 // ejercicio parecido a pre entrega.
 
 // Solido -> general -> especifico
-console.log('Hola')
+
 class Cliente { 
     constructor(nombre, apellido, dni, saldo){
         this.nombre = nombre;
@@ -17,12 +17,12 @@ const maria = new Cliente("maria", "gomez", 341313133, 26000);
 const pedro = new Cliente("pedro", "ramis", 241313133, 3610);
 
 const arrayClientes = [samuel, juan, maria, pedro]
-console.log(arrayClientes)
+arrayClientes.forEach(producto => console.log(producto.nombre));
 
 // funcion con el menu de opciones
 function menu () {
     alert("Bienvenido al Banco Corder")
-    let opcion = parseInt("ingrese una opcion: \n1) Alta cliente, \n2) Baja cliente, \n3) Modificacion cliente, \n4) Saldo de cliente, \n5) Salir!")
+    let opcion = parseInt(prompt("ingrese una opcion: \n1) Alta cliente, \n2) Baja cliente, \n3) Modificacion cliente, \n4) Saldo de cliente, \n5) Salir!"));
     return opcion;
 }
 
@@ -35,6 +35,7 @@ function altaCliente() {
     const newCliente = new Cliente(nombre, apellido, dni, saldo);
     arrayClientes.push(newCliente);
     console.log(arrayClientes);
+    arrayClientes.forEach(producto => console.log(producto.nombre));
 }
 
 function bajaCliente(){
@@ -48,22 +49,24 @@ function bajaCliente(){
 }
 
 function modificacionCliente () {
-    let dni = parseInt(prompt("ingrese el dni del cliente: ");
+    let dni = parseInt(prompt("ingrese el dni del cliente: "));
     let cliente = arrayClientes.find( cliente => cliente.dni === dni );
     let indice = arrayClientes.indexOf(cliente);
     let nombre = prompt("ingrese nombre: ");
     let apellido = prompt("ingrese apellido: ");
-    let saldo = parseInt(prompt("ingrese saldo: " ));
+    let saldo = parseInt(prompt("ingrese saldo: "));
 
     const modCliente = new Cliente(nombre, apellido, dni, saldo);
     arrayClientes.splice(indice, 1, modCliente);
     console.log(arrayClientes);
+    arrayClientes.forEach(producto => console.log(producto.nombre));
 }
 
 function consultarCleinte() {
-    let dni = parseInt(prompt("ingrese el dni del cliente: ");
+    let dni = parseInt(prompt("ingrese el dni del cliente: "));
     let cliente = arrayClientes.find( cliente => cliente.dni === dni );
     console.log(cliente);
+    
 }
 
 function salir() {
@@ -73,7 +76,7 @@ function salir() {
 
 // ejecutar prg
 
-// let opcion = menu();
+let opcion = menu();
 
 switch (opcion) {
     case 1: 
