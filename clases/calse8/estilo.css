@@ -1,0 +1,19 @@
+.estilo_rojo {
+    color: red;
+}
+
+.parrafin {
+    font-size: 29px;
+}
+
+.caja {
+    border: 1px solid black;
+    margin: 10px;
+    display: inline-block;
+    width: 200px;
+    padding: 2%;
+}
+
+.caja li {
+    list-style-type: none;
+}
