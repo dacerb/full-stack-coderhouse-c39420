@@ -255,12 +255,10 @@ function menu(loopqty) {
         "Reporte de productos",
         "Limpiar consola",
     ];
-    if (loopqty <= 1 ){
-        options.forEach((element, idx )=> {
-            console.log(`Opción ${idx}, ${element}`);
-        });
-    }
     
+    options.forEach((element, idx )=> {
+        console.log(`Opción ${idx}, ${element}`);
+    });    
 
     let inputValue = parseInt(prompt("Ingrese una de las opciones disponibles mostradas por consola: "))
 
@@ -327,8 +325,6 @@ function runLoop() {
 
 // Esperamos que el HTML sea cargado para ejecutar JS
 window.addEventListener("load", function() {
-
-    alert("¡Antes de aceptar asegurate de abrir la consola!")
 
     // se carga lista de producto para evitar tener que cargar datos por defecto.
     loadProductList();
