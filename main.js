@@ -89,8 +89,8 @@ function loadProductList() {
     })
 
 
-
-
+    showMsg("Se agregaron productos")
+    showMsg("")
 
 }
 
@@ -322,8 +322,15 @@ function runLoop() {
     return loopQty 
 } 
 
-// se carga lista de producto para evitar tener que cargar datos por defecto.
-loadProductList();
 
-// Ejecutamos el loop del simulador
-console.log(`Se realizaron ${runLoop()} iteracion/s`);
+
+
+// Esperamos que el HTML sea cargado para ejecutar JS
+window.addEventListener("load", function() {
+
+    // se carga lista de producto para evitar tener que cargar datos por defecto.
+    loadProductList();
+
+    // Ejecutamos el loop del simulador
+    console.log(`Se realizaron ${runLoop()} iteracion/s`);
+});
