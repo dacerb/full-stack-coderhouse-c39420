@@ -260,7 +260,7 @@ function menu(loopqty) {
         console.log(`Opción ${idx}, ${element}`);
     });    
 
-    let inputValue = parseInt(prompt("Ingrese una de las opciones disponibles mostradas por consola: "))
+    let inputValue = parseInt(prompt("Ingrese una de las opciones disponibles mostradas por consola: IMPORTANTE:  0) para salir y 7) para listar el menu"))
 
     switch (inputValue){
         case 0:
@@ -299,9 +299,6 @@ function menu(loopqty) {
         case 7:
             showMsg("Opcion 7: limpiar consola")
             console.clear();
-            options.forEach((element, idx )=> {
-                console.log(`Opción ${idx}, ${element}`);
-            });
             break;
 
         default:
@@ -332,7 +329,7 @@ window.addEventListener("load", function() {
 
     // se carga lista de producto para evitar tener que cargar datos por defecto.
     loadProductList();
-    showMsg("Ingrese 0) para salir y 7) para listar el menu")
+    
 
     // Ejecutamos el loop del simulador
     console.log(`Se realizaron ${runLoop()} iteracion/s`);
