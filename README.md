@@ -1,4 +1,4 @@
-# Primera Entrega Coderhouse JavaScript
+# Segunda Pre Entrega Coderhouse JavaScript
 > C39420
 ---
 
