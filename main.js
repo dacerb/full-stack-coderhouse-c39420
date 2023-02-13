@@ -332,6 +332,7 @@ window.addEventListener("load", function() {
 
     // se carga lista de producto para evitar tener que cargar datos por defecto.
     loadProductList();
+    showMsg("Ingrese 0) para salir y 7) para listar el menu")
 
     // Ejecutamos el loop del simulador
     console.log(`Se realizaron ${runLoop()} iteracion/s`);
