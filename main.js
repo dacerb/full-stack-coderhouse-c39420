@@ -177,6 +177,13 @@ function averagePrice(){
 
 function belowMinStock() {
     showMsg("Iniciando generacion de reporte producto por debajo del stock minimo")
+    let minStock = parseInt(prompt("Ingrese el minimo del stock para filtrar productos que no cumplan: "))
+    const inventoryMinStock = inventory.filter(producto => producto.qty < minStock);
+    
+    inventoryMinStock.forEach(product => {
+        console.log(`Nombre: ${product.name}, Stock: ${product.qty}`)
+    })
+
 
 }
 
