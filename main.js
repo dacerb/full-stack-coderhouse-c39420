@@ -328,6 +328,8 @@ function runLoop() {
 // Esperamos que el HTML sea cargado para ejecutar JS
 window.addEventListener("load", function() {
 
+    alert("¡Antes de aceptar asegurate de abrir la consola!")
+
     // se carga lista de producto para evitar tener que cargar datos por defecto.
     loadProductList();
 
