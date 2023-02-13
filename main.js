@@ -255,7 +255,7 @@ function menu(loopqty) {
         "Reporte de productos",
         "Limpiar consola",
     ];
-    
+
     options.forEach((element, idx )=> {
         console.log(`Opción ${idx}, ${element}`);
     });    
@@ -264,11 +264,13 @@ function menu(loopqty) {
 
     switch (inputValue){
         case 0:
+            console.clear()
             showMsg("Opcion 0: Saliendo del simulador");
             alert("Fin de la simulación")
             loopStatus = false
             break;
         case 1: 
+            console.clear()
             showMsg("Opcion 1: Alta de producto")
             AddProduct();
             break;
@@ -281,6 +283,7 @@ function menu(loopqty) {
             deleteProduct();
             break;
         case 4:
+            console.clear()
             showMsg("Opcion 4: Mostrar todos los productos")
             showAllProduct();
             break;
@@ -289,6 +292,7 @@ function menu(loopqty) {
             findProduct();
             break;
         case 6:
+            console.clear()
             showMsg("Opcion 6: Generando reporte de productos")
             generateReport();
             break;
