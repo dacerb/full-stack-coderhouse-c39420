@@ -172,7 +172,33 @@ function showAllProduct() {
 
 function averagePrice(){
     showMsg("Iniciando generacion promedio de precio")
+    
+    let countPrice = 0
+    let qtyProducts = inventory.length
+    console.log(qtyProducts)
+    
+    inventory.forEach(product => {
+        countPrice += product.price
+    })
 
+    let avgPrice = Math.round(countPrice/qtyProducts)
+    const inventoryAvgPriceBelow = inventory.filter(producto => producto.price < avgPrice);
+    const inventoryAvgPriceAbove = inventory.filter(producto => producto.price > avgPrice);
+    const inventoryAvgPriceMid = inventory.filter(producto => producto.price === avgPrice);
+
+    showMsg('Productos por debajo del promedio')
+    inventoryAvgPriceBelow.forEach(product => {
+        console.log(`Nombre: ${product.name}, Precio: ${product.price}`)
+    })
+    showMsg('Productos por arriba del promedio')
+    inventoryAvgPriceAbove.forEach(product => {
+        console.log(`Nombre: ${product.name}, Precio: ${product.price}`)
+    })
+    showMsg('Productos iguales del promedio')
+    inventoryAvgPriceMid.forEach(product => {
+        console.log(`Nombre: ${product.name}, Precio: ${product.price}`)
+    })
+    console.log(`Promedio ${avgPrice}, cantidad de productos diferentes ${qtyProducts}, total ${countPrice}`)
 }
 
 function belowMinStock() {
@@ -183,8 +209,6 @@ function belowMinStock() {
     inventoryMinStock.forEach(product => {
         console.log(`Nombre: ${product.name}, Stock: ${product.qty}`)
     })
-
-
 }
 
 function generateReport() {
