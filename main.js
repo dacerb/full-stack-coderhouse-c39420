@@ -256,9 +256,11 @@ function menu(loopqty) {
         "Limpiar consola",
     ];
 
-    options.forEach((element, idx )=> {
-        console.log(`Opción ${idx}, ${element}`);
-    });    
+    if (loopqty <= 1) {
+        options.forEach((element, idx )=> {
+            console.log(`Opción ${idx}, ${element}`);
+        });  
+    }  
 
     let inputValue = parseInt(prompt("Ingrese una de las opciones disponibles mostradas por consola: IMPORTANTE:  0) para salir y 7) para listar el menu"))
 
@@ -299,6 +301,9 @@ function menu(loopqty) {
         case 7:
             showMsg("Opcion 7: limpiar consola")
             console.clear();
+            options.forEach((element, idx )=> {
+                console.log(`Opción ${idx}, ${element}`);
+            });   
             break;
 
         default:
