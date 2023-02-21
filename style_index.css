@@ -1,0 +1,91 @@
+
+:root {
+
+    --acent: #e9ff88;
+    --first: #f3d8fa;
+    --secondary: #4a354f;
+    --dark: #19191a;
+    --white: whitesmoke;
+    --tile_color_lighting: var(--dark);
+    --text_color_lighting: var(--secondary);
+
+    --tile_color_dark: var(--acent);
+    --text_color_dark: var(--first);
+    --space_letter: 1.2px;
+    --space_letter_x: 2px;
+    --opacity_green: hsla(71, 69%, 66%, 0.9);
+}
+
+
+/* ---------> HEADER */
+
+#header img {
+    width: 80px;
+}
+
+#header nav .nav-item a,  #header nav form .mode label{
+    font-weight: 800;
+    letter-spacing: var(--space_letter_x);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#header nav form .mode label {
+    padding: 0 6px;
+    background-color: #e9ff88;
+    margin-right: 10px;
+}
+
+/*  ---------> HEADER END */
+
+
+
+/* ---------> MAIN */
+#main .home {
+
+}
+#main .home img {
+    width: 100%;
+    max-height: 800px;
+    object-fit:cover;
+}
+
+#main .home .text_starbucks {
+    border-left: var(--opacity_green) 8px solid;
+}
+
+
+/*  ---------> MAIN END */
+
+
+
+/*  ---------> FOOTER */
+
+#footer {
+    background-color: var(--dark);
+}
+
+#footer {
+    border-top: dotted 4px var(--acent);    
+}
+
+#footer .container a {
+    font-weight: 800;
+    letter-spacing: var(--space_letter);
+    color: var(--opacity_green);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#footer .container h2 {
+    color: var(--acent);
+    text-transform: uppercase;
+}
+
+#footer .container p {
+    font-weight: 800;
+    letter-spacing: var(--space_letter);
+    text-transform: uppercase;
+    color: var(--text_color_dark);
+}
+/* ---------> FOOTER END */
