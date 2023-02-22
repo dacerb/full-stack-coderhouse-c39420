@@ -1,36 +1,279 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrega | coderhouse</title>
-    <style>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+    <title>CoderHouse | Entrega </title>
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar" data-offset="90">
+    <!-- HEACER -->
+    <header id="header" class="sticky-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg sticky-top">
+                <div class="container-fluid">
+                  <a class="navbar-brand navbar" href="#">
+                    <img src="./assets/img/logo_Starbucks.png" alt="Logo de Starbucks">
+                  </a>
+    
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+    
+                  <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav  ms-auto ">
+                      <li class="nav-item">
+                        <a class="nav-link disabled" href="#main">Inicio</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link " href="#about_as">Nosotros</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#buy">Comprar</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Contato</a>
+                      </li>               
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <div class="mode label">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Light-Mode</label>
+                        </div>
+                        <div class="form-check form-switch mode">
+                            
+                            <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" checked value="light">
+                        </dir>
+                    </form>
+                  </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- /HEADER -->
+    
+    
+    <hr class="mt-5 mb-5 grl_separation">
 
-        a {
-            text-decoration: none;
-            color: #3AADBD;
-        }
-        body {
-            background: #EFF1E2;
-        }
 
-        section {
-            color: #424949;
-            text-align: center;
-            margin-top:350px;
-        }
+    <!-- MAIN -->
+    <main id="main">
 
-        section h1 {font-size: 40px;}
-        section p {font-size: 28px; color: #5D6D7E;}
-    </style>
-</head>
-<body>
-    <section>
-        <h1>Bienvenido a la segunda pre entrega JavaScript</h1>
-        <p>HTML del proyecto de entrega de <b>David Acerbo</b></p>
-        <p><b><a href="https://github.com/dacerb/full-stack-coderhouse-c39420/tree/PreEntrega2Acerbo" target="_blank">GitHub</a></b></p>
-    </section>
-    <script src="main.js"></script>
-</body>
+        <section class="about_as" id="about_as">
+            <div class="container pt-5 pb-5">
+                <div class="row ">
+                    <div class="col-12 pb-sm-5 pt-sm-5  pb-md-0 pt-md-0  shadow-lg p-3 mb-5 bg-body-tertiary col-md-12 col-lg-6">
+                        <img  class="img-fluid" src="./assets/img/pexels-nathan-j-hilton-13791002.jpg" alt="Imagen StarBucks Coffee">
+                    </div>
+                    <div class=" text_starbucks col-12 pb-sm-5 pt-sm-5  pb-md-0 pt-md-0 shadow-lg p-3 mb-5 bg-body-tertiary col-md-12 col-lg-6">
+                        <p class="pt-2">
+                            <strong>Starbucks</strong> es una empresa <b>líder</b> en la industria de las cafeterías, 
+                            conocida por ofrecer una experiencia de cliente excepcional y una amplia variedad de bebidas de alta calidad, 
+                            incluyendo <i>café, té, bebidas frías, bocadillos y productos de panadería.</i>
+                            <br>
+                            Una de las características más distintivas de <strong>Starbucks</strong> es el ambiente acogedor que ofrece a sus clientes. 
+                            Cada tienda está diseñada para proporcionar un ambiente relajado y agradable en el que los clientes pueden disfrutar de su bebida de café favorita, 
+                            trabajar en su computadora portátil, reunirse con amigos o simplemente relajarse.
+                            <br>
+                            Además de su compromiso con la calidad de sus productos y la experiencia de cliente, 
+                            Starbucks se ha comprometido con la sostenibilidad y la ética empresarial. 
+                            La empresa ha implementado políticas y prácticas que reducen su impacto ambiental y apoya a las comunidades en las que opera.
+                            <br>
+                            Starbucks también se ha comprometido a <strong>trabajar directamente con los agricultores</strong> de café 
+                            para garantizar que se cultiven granos de café de alta calidad y sostenibles. 
+                            La empresa también se ha asociado con organizaciones sin fines de lucro para ayudar a mejorar 
+                            la vida de las personas en las comunidades en las que se cultivan los granos de café.
+                            <hr>
+                           
+                            En resumen, <b>Starbucks</b> se ha convertido en una de las empresas más conocidas y respetadas en 
+                            la industria de las cafeterías, ofreciendo una experiencia de cliente excepcional, 
+                            productos de alta calidad y un compromiso con la sostenibilidad y la ética empresarial. 
+                            Con su compromiso con la innovación y la excelencia, Starbucks continúa liderando la industria del 
+                            café y creando experiencias memorables para los amantes del café de todo el mundo
+                        
+                        </p>
+                    </div>  
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="mt-5 mb-5 grl_separation">
+
+        <section class="buy" id="buy">
+          <div class="container-fluid market-section text-center">
+            <div class="container">
+              <div class="row title_market p-4 pt-5">
+                <div class="col-6">
+                  <h2>Nuestros Productos <span>&#174</span></h2>
+                </div>
+                <div class="col-2 offset-2  cart">
+
+                  <button type="button" class="btn btn-outline-light position-relative"  data-bs-toggle="modal" data-bs-target="#modalResume" data-bs-toggle="tooltip"  data-bs-placement="bottom" data-bs-title="Ver carrito">
+                    <img src="./assets/img/food-cart.png" alt="Logo carrito de compras">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      99+
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  </button>
+                  <!--button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Open first modal</!--button -->
+
+                </div>
+                <hr class="mt-5 mb-5">
+              </div>
+            </div>
+
+            <div class="row market_products">    
+
+
+                  <!-- PRODUCTOS -->
+                  <div class="col-12 col-md-6 col-lg-4 col-xxl-2 mb-4">
+                    <div class="card shadow-lg">
+                          <img src="./assets/img/productos_img/2022-03_Skinny Vainilla Latte 425x425 sin fondo.png" class="card-img-top img-producto" alt="Skinny Vainilla Latte">
+                      <div class="card-body">
+                        <h5 class="card-title">Café</h5>
+                        <div class="badges mt-2 mb-2 ">
+                          <span class="badge rounded-pill text-bg-warning">caliente</span>
+                          <span class="badge rounded-pill text-bg-primary">bebida</span>
+                        </div>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <button id="add" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto">+</button>
+                        <button id="remove" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto ">-</button>
+                        <button id="card-cart" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalResume" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Ir al carrito">
+                          <img src="./assets/img/food-cart.png" alt="Logo carrito de compras">
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /PRODUCTOS -->
+
+
+
+            </div>
+          </div>
+        </section>
+
+
+        <section class="effects">
+          <div class="container-fluid">
+            <div class="row carousel-row">
+              <div class="col">
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-touch="false">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="./assets/img/pexels-puscau-daniel-florin-217120.jpg" class="d-block w-100" alt="Laguna con Bosque">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="./assets/img/pexels-dsd-975416.jpg" class="d-block w-100" alt="Boque de pinos">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="./assets/img/pexels-pixabay-326337.jpg" class="d-block w-100" alt="Bosque de pinos dia nublado">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+    </main>
+    <!-- /MAIN -->
+    
+    <!-- Footer -->
+    <footer id="footer" >
+        <div class="container">
+            <div class="row pt-5 pb-5">
+                <div class="col-12 col-md-4 text-center">
+                    <a href="https://github.com/dacerb/full-stack-coderhouse-c39420" target="_blank">Github</a>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <a href="https://www.linkedin.com/in/david-daniel-a-75980777/" target="_blank">@dacerbo</a>
+                </div>
+                <div class="col-12 col-md-4 text-center pt-3 pt-md-0">
+                    <p> Copyright 2023 </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer-->
+    <div class="container-fluid">
+      <div class="feature map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3023.6752502007657!2d-73.992009!3d40.725165!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259851c1e9037%3A0x74407071825a96a4!2sCBGB!5e0!3m2!1sen!2sus!4v1395419817211"></iframe>
+      </div>
+    </div>
+
+    <!-- MODALS-->
+    <!-- RESUMEN -->
+    <div class="modal fade" id="modalResume" aria-hidden="true" aria-labelledby="modalResume" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalResume">Resumen</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           Cuentas y gestion del carrito  + y - prods....
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" data-bs-target="#" data-bs-toggle="modal">Seguir de compras</button>
+            <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal">Ir a pagar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESAR PAGO  -->
+    <div class="modal fade" id="modalPay" aria-hidden="true" aria-labelledby="modalPay" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalPay">Metodo de pago</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            input de tarjeta o medio de pago OT ...... 
+            magias 
+          </div>
+          <div class="alert alert-warning" role="alert">
+            A simple danger alert—check it out! ESTAS POR REALIZAR EL PAGO PERRI
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" data-bs-target="#modalResume" data-bs-toggle="modal">Volver</button>
+            <button class="btn btn-primary" data-bs-target="#modalPayed" data-bs-toggle="modal">Pagar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGO REALIZADO  -->
+    <div class="modal fade" id="modalPayed" aria-hidden="true" aria-labelledby="modalPayed" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalPayed">PAGASTE PERRI</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Todo chill.... ver como descontar stock y flshear envio de mail etc....
+            <div class="alert alert-success" role="alert">
+              A simple success alert—check it out! A TU CASA T CABI PERROTE YA FUE LA GUITA Y EL PROD
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" data-bs-target="#" data-bs-toggle="modal">cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /MODALS-->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <script>
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
+  </body>
 </html>
