@@ -105,3 +105,18 @@ console.log(nombreAlumno);
 // ALIAS   curso:carrera..... 
 let {nombre, apellido, edad, curso:carrera} = alumno;
 console.log(nombre, apellido, edad, carrera);
+
+const gato = {
+    duenio: "juan",
+    raza: "persa",
+    edad: 5,
+    direccion : {
+        calle: "av. siempre viva",
+        numero: 123,
+        ciudad: "sprinfield"
+    }
+}
+
+let {duenio, raza, edad:edadGato, direccion:{calle, numero, ciudad}} = gato;
+console.log(duenio, raza, edadGato, calle, numero, ciudad)
+console.log(calle)
