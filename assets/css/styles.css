@@ -1,0 +1,170 @@
+
+:root {
+
+    --acent: #e9ff88;
+    --first: #f3d8fa;
+    --secondary: #4a354f;
+    --dark: #19191a;
+    --white: whitesmoke;
+    --tile_color_lighting: var(--dark);
+    --text_color_lighting: var(--secondary);
+
+    --tile_color_dark: var(--acent);
+    --text_color_dark: var(--first);
+    --space_letter: 1.2px;
+    --space_letter_x: 2px;
+    --opacity_green: hsla(71, 69%, 66%, 0.9);
+}
+
+
+/* ---------> HEADER */
+header {
+    background-color: #fff;
+}
+
+#header img {
+    width: 80px;
+}
+
+#header nav .nav-item a,  #header nav form .mode label{
+    font-weight: 800;
+    letter-spacing: var(--space_letter_x);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#header nav form .mode label {
+    padding: 0 6px;
+    background-color: #e9ff88;
+    margin-right: 10px;
+}
+
+/*  ---------> HEADER END */
+
+
+
+/* ---------> MAIN */
+
+#main .about_as img {
+    width: 100%;
+    max-height: 800px;
+    object-fit:cover;
+}
+
+#main .about_as .text_starbucks {
+    border-left: var(--opacity_green) 8px solid;
+}
+
+
+#main .buy .market-section {
+    background-image: var(--white);
+    min-height: 100vh;
+}
+
+
+
+
+
+#main .buy .market-section .title_market h2{
+    color: var(--tile_color_lighting);
+    font-weight: 800;
+    letter-spacing: var(--space_letter_x);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+#main .buy .market-section .market_products .card #card-cart img {
+    border-radius: 0;
+    width: 30px;
+    height: 30px;
+}  
+
+#main .buy .market-section .market_products .img-producto {
+    margin: auto;
+    margin-top: 20px;
+    width: 50%;
+    background-color: var(--white);
+    border-radius: 50%;
+}
+
+
+#main .buy .title_market .cart  button img{
+    max-width: 25px;
+}
+
+
+#main .buy .title_market .cart  button{
+    width: 50px;
+    height: 50px;
+    border: none;
+
+}
+
+.grl_separation {
+    border: 2px solid var(--tile_color_lighting);
+}
+
+.effects .carousel-item img {
+    height: 50vh;
+    overflow: hidden;
+    object-fit: cover;
+    width: 100%;
+}
+
+.effects .container-fluid{
+    padding: 0;
+    overflow: hidden;
+    border-top: solid 8px var(--acent);   
+}
+/*  ---------> MAIN END */
+
+
+
+/*  ---------> FOOTER */
+
+#footer {
+    background-color: var(--dark);
+    height: 20vh;
+}
+
+#footer .container a {
+    font-weight: 800;
+    letter-spacing: var(--space_letter);
+    color: var(--opacity_green);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#footer .container h2 {
+    color: var(--acent);
+    text-transform: uppercase;
+}
+
+#footer .container p {
+    font-weight: 800;
+    letter-spacing: var(--space_letter);
+    text-transform: uppercase;
+    color: var(--text_color_dark);
+}
+/* ---------> FOOTER END */
+
+
+
+
+/* ------- MAPS -------------*/
+
+
+
+.feature.map iframe {
+  height: 50vh;
+  width: 100%;
+  border: 0;
+  filter: gray;
+  /* IE6-9 */
+  -webkit-filter: grayscale(99%);
+  /* Chrome 19+ & Safari 6+ */
+  -webkit-backface-visibility: hidden;
+  /* Fix for transition flickering */
+}
+/* -------- /MAPS -------- */

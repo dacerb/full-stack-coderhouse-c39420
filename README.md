@@ -1,11 +1,11 @@
-# Segunda Pre Entrega Coderhouse JavaScript
+# Tercer Pre Entrega Coderhouse JavaScript
 > C39420
 ---
 
 URL del proyecto: [Link](https://dacerb.github.io/full-stack-coderhouse-c39420/)
 
 #### IMPORTANTE:
-`Todas las interacciones en esta entrega son por consola.`
+`Interacciones Renderizadas en el HTML.`
 
 ---
 ## Consigna:
