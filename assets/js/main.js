@@ -178,9 +178,16 @@ const addToCart = (id) => {
 const removeToCart = (id) => {
     const found_product_in_cart = cart.find(product => product.id === id);
     if (found_product_in_cart) {
-        if (found_product_in_cart.cart_add_qty > 1 ) {
+        if (found_product_in_cart.cart_add_qty > 0 ) {
             found_product_in_cart.cart_add_qty--;
             updateCountProduct(found_product_in_cart.id, found_product_in_cart.cart_add_qty)
+
+        if (found_product_in_cart.cart_add_qty == 0) {
+            let found_product_in_cart_idx = cart.indexOf(found_product_in_cart);
+            if (found_product_in_cart_idx >= 0) {
+                cart.splice(found_product_in_cart_idx,1)
+            }
+        }
 
         }else {
             let found_product_in_cart_idx = cart.indexOf(found_product_in_cart);
