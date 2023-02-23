@@ -146,6 +146,7 @@ const showProductsMarket = () => {
             <button id="card-cart" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalResume" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Ir al carrito">
                 <img src="./assets/img/food-cart.png" alt="Logo carrito de compras">
             </button>
+            <span id="product_card_id_qty_${product.id}" class="badge bg-primary rounded-pill"></span>
             </div>
         </div>
         `
@@ -154,12 +155,14 @@ const showProductsMarket = () => {
         // CONTROL CARRITO -+
         const addCart = document.getElementById(`add_cart_id_${product.id}`);
         addCart.addEventListener("click", () => {
-            addToCart(product.id)
+            addToCart(product.id);
+            renderCart();
         });
 
         const removeCart = document.getElementById(`remove_cart_id_${product.id}`);
         removeCart.addEventListener("click", () => {
-            removeToCart(product.id)
+            removeToCart(product.id);
+            renderCart();
         });
 
 
@@ -175,6 +178,7 @@ const addToCart = (id) => {
 
         if (found_product_in_cart.qty > found_product_in_cart.cart_add_qty) {
             found_product_in_cart.cart_add_qty++;
+            updateCountProduct(found_product_in_cart.id, found_product_in_cart.cart_add_qty)
             console.log("add to cart id ", found_product_in_cart.id, "qty:", found_product_in_cart.cart_add_qty)
         }
     
@@ -182,8 +186,9 @@ const addToCart = (id) => {
         const found_product_in_inventary = inventory.find(product => product.id === id);
         found_product_in_inventary.cart_add_qty++
         cart.push(found_product_in_inventary);
+        updateCountProduct(found_product_in_inventary.id, found_product_in_inventary.cart_add_qty)
     }
-
+  
     updateCountCart();
 }
 
@@ -195,6 +200,7 @@ const removeToCart = (id) => {
         if (found_product_in_cart.cart_add_qty > 1 ) {
             
             found_product_in_cart.cart_add_qty--;
+            updateCountProduct(found_product_in_cart.id, found_product_in_cart.cart_add_qty)
             console.log("remove to cart id ", "id:", found_product_in_cart.id, "qty:", found_product_in_cart.cart_add_qty)
 
         }else {
@@ -202,6 +208,7 @@ const removeToCart = (id) => {
             if (found_product_in_cart_idx >= 0) {
                 cart.splice(found_product_in_cart_idx,1)
             }
+            updateCountProduct(found_product_in_cart.id, 0)
         }
     } 
     updateCountCart();
@@ -216,6 +223,7 @@ const resumeTotalContainer = document.getElementById("resume_total");
 showCart.addEventListener("click", () => {
     renderCart();
 });
+
 
 const renderCart = () => {
     let sumTotal = 0;
@@ -242,7 +250,7 @@ const renderCart = () => {
             
         sumTotal = parseInt(product.price * product.cart_add_qty) + parseInt(sumTotal)
 
-        if (sumTotal > 0) {
+        if (sumTotal > 0) { // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
             
             resumeTotalContainer.innerHTML = `
             <button type="button" class="btn " disabled><span id="resume_total_text">Total: $${sumTotal}</span></button>
@@ -268,6 +276,8 @@ const renderCart = () => {
 };
 
 
+
+
 const updateCountCart = () => {
     let coutProducts = 0;
     const countCart = document.getElementById("cart_count");
@@ -282,5 +292,15 @@ const updateCountCart = () => {
         countCart.classList.add("visually-hidden")
     }
 };
+
+const updateCountProduct = (id, qty) => {
+    const productCardQty = document.getElementById(`product_card_id_qty_${id}`)
+    if (qty > 0) {
+        productCardQty.innerHTML = qty
+    }else {
+        productCardQty.innerHTML = ""
+    }
+    
+}
 
 showProductsMarket();
