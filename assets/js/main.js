@@ -1,6 +1,6 @@
 // DEFINICION DE CONSTANTES INVENTARIO Y DATA PRODUCTOS...
 const inventory = [];
-const cart = [];
+let cart = [];
 const dataProduct = [
     {
         "id": 0,
@@ -201,6 +201,10 @@ const removeToCart = (id) => {
 }
 
 
+
+
+
+
 // ACTUALIZACION DE CARRITO DE COMPRAS
 const resumeCart = document.getElementById("resume_cart");
 const showCart = document.getElementById("show_cart");
@@ -217,47 +221,71 @@ const renderCart = () => {
     resumeCart.innerHTML = "";
     resumeTotalContainer.innerHTML = ` 
         <button class="btn btn-outline-secondary" data-bs-target="#" data-bs-toggle="modal">Seguir de compras</button>
-        <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal" disabled>Ir a pagar</button>
+        <button id="hola" class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal" disabled>Ir a pagar</button>
         ` // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
 
-    cart.forEach(product => {
-        const resumeItem = document.createElement("li");
-        resumeItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start");
-        resumeItem.innerHTML = `
-                <div class="ms-2 me-auto">
-                <div class="fw-bold">${product.name}</div>
-                <button id="resume_add_cart_id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto">+</button>
-                <button id="resume_remove_cart_id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto ">-</button>
-                </div>
-                <span class="badge bg-primary rounded-pill">${product.cart_add_qty}</span>
-            `
-            resumeCart.appendChild(resumeItem);
-            
-        sumTotal = parseInt(product.price * product.cart_add_qty) + parseInt(sumTotal)
+        cart.forEach(product => {
+            const resumeItem = document.createElement("li");
+            resumeItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start");
+            resumeItem.innerHTML = `
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">${product.name}</div>
+                    <button id="resume_add_cart_id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto">+</button>
+                    <button id="resume_remove_cart_id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto ">-</button>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">${product.cart_add_qty}</span>
+                `
+                resumeCart.appendChild(resumeItem);
+                
+            sumTotal = parseInt(product.price * product.cart_add_qty) + parseInt(sumTotal)
+    
+            if (sumTotal > 0) { // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
+                resumeTotalContainer.innerHTML = `
+                <button type="button" class="btn " disabled><span id="resume_total_text">Total: $${sumTotal}</span></button>
+                <button id="clear_cart"class="btn btn-outline-danger">Vaciar Carrito</button>
+                <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal">Ir a pagar</button>
+                `
+            }
+    
+            // CONTROL CARRITO -+
+            const addCart = document.getElementById(`resume_add_cart_id_${product.id}`);
+                addCart.addEventListener("click", () => {
+                addToCart(product.id)
+                renderCart();
+            });
+    
+            const removeCart = document.getElementById(`resume_remove_cart_id_${product.id}`);
+            removeCart.addEventListener("click", () => {
+                removeToCart(product.id)
+                renderCart();
+            });
+    
+            const clearCart = document.getElementById("clear_cart");
+            clearCart.addEventListener("click", () => {
+                cleanCartProces();
+                renderCart();
+            });
+    
 
-        if (sumTotal > 0) { // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
-            resumeTotalContainer.innerHTML = `
-            <button type="button" class="btn " disabled><span id="resume_total_text">Total: $${sumTotal}</span></button>
-            <button class="btn btn-outline-secondary" data-bs-target="#" data-bs-toggle="modal">Seguir de compras</button>
-            <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal">Ir a pagar</button>
-            `
-        }
-
-        // CONTROL CARRITO -+
-        const addCart = document.getElementById(`resume_add_cart_id_${product.id}`);
-            addCart.addEventListener("click", () => {
-            addToCart(product.id)
-            renderCart();
-        });
-
-        const removeCart = document.getElementById(`resume_remove_cart_id_${product.id}`);
-        removeCart.addEventListener("click", () => {
-            removeToCart(product.id)
-            renderCart();
-        });
-
+        
     });
 };
+
+
+
+
+// VACIAR CARRITO, LIMPIA DISPLAY DE CANTIDAD EN PRODUCTOS Y TOTAL DE ART EN CARRITO
+const cleanCartProces = () => {
+    cart = [];
+
+    inventory.forEach(product => {
+        updateCountProduct(product.id, 0)
+    })
+    updateCountCart();
+};
+
+
+
 
 const updateCountCart = () => {
     let coutProducts = 0;

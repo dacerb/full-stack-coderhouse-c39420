@@ -23,6 +23,10 @@ modeView.addEventListener("change", (event) => {
 const mode = localStorage.getItem("mode")
 if (mode === "dark") {
     head[0].appendChild(darkModeCss)
+    modeView.checked = false;
+    modeView.value = "dark";
 } else {
     head[0].removeChild(darkModeCss)
+    modeView.checked = true;
+    modeView.value = "light";
 }
