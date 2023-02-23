@@ -77,6 +77,110 @@ const dataProduct = [
         "thumbnail":"./assets/img/productos_img/caramel_frappuccino.png",
         "thumbnail_datail":"Caramel Frappuccino",
         "tags": ["bebida", "frio"],
+    }, ///////////
+    {
+        "name":"Dulce de leche Latte",
+        "description":"Café espresso con dulce de leche, leche al vapor con crema batida y salsa de caramelo.",
+        "price":"545",
+        "qty":"30",
+        "thumbnail":"./assets/img/productos_img/dulce_de_leche_latte.png",
+        "thumbnail_datail":"Dulce de leche Latte",
+        "tags": ["bebida", "caliente"],
+    },{
+        "name":"Cappuccino",
+        "description":"Café espresso, leche vaporizada y abundante espuma de leche.",
+        "price":"245",
+        "qty":"40",
+        "thumbnail":"./assets/img/productos_img/cappuccino.png",
+        "thumbnail_datail":"Cappuccino",
+        "tags": ["bebida", "caliente"],
+    },{
+        "name":"Youthberry",
+        "description":"Una mezcla de té blanco cítrico con toques brillantes de sabor tropical. Con mango, naranja, hibisco y pétalos de rosa.",
+        "price":"415",
+        "qty":"17",
+        "thumbnail":"./assets/img/productos_img/youthberry.png",
+        "thumbnail_datail":"Youthberry",
+        "tags": ["bebida", "caliente"],
+    },
+    {
+        "name":"English Breakfast",
+        "description":"Mezcla de tés negros: Assam de la India, Los tés de Assam añaden toques profundos de malta y té negro y un rico aroma a caramelo. ",
+        "price":"578",
+        "qty":"39",
+        "thumbnail":"./assets/img/productos_img/english_breakfast.png",
+        "thumbnail_datail":"English Breakfast",
+        "tags": ["bebida", "caliente"],
+    },
+    {
+        "name":"Dragon Drink",
+        "description":"Leche de coco con Mango Dragon Fruit, el sabor de esta fruta similar a mezcla ligeramente dulce entre un kiwi y una pera.",
+        "price":"700",
+        "qty":"7",
+        "thumbnail":"./assets/img/productos_img/dragon_drink.png",
+        "thumbnail_datail":"Dragon Drink",
+        "tags": ["bebida", "heladas"],
+    },
+    {
+        "name":"Caramel Frappuccino",
+        "description":"Frappuccino a base de café. Dulce combinación de caramelo, café, leche y hielo, decorado con un remolino de crema batida y caramelo.",
+        "price":"380",
+        "qty":"70",
+        "thumbnail":"./assets/img/productos_img/caramel_frappuccino.png",
+        "thumbnail_datail":"Caramel Frappuccino",
+        "tags": ["bebida", "frio"],
+    }, ///////
+    {
+        "name":"Dulce de leche Latte",
+        "description":"Café espresso con dulce de leche, leche al vapor con crema batida y salsa de caramelo.",
+        "price":"545",
+        "qty":"30",
+        "thumbnail":"./assets/img/productos_img/dulce_de_leche_latte.png",
+        "thumbnail_datail":"Dulce de leche Latte",
+        "tags": ["bebida", "caliente"],
+    },{
+        "name":"Cappuccino",
+        "description":"Café espresso, leche vaporizada y abundante espuma de leche.",
+        "price":"245",
+        "qty":"40",
+        "thumbnail":"./assets/img/productos_img/cappuccino.png",
+        "thumbnail_datail":"Cappuccino",
+        "tags": ["bebida", "caliente"],
+    },{
+        "name":"Youthberry",
+        "description":"Una mezcla de té blanco cítrico con toques brillantes de sabor tropical. Con mango, naranja, hibisco y pétalos de rosa.",
+        "price":"415",
+        "qty":"17",
+        "thumbnail":"./assets/img/productos_img/youthberry.png",
+        "thumbnail_datail":"Youthberry",
+        "tags": ["bebida", "caliente"],
+    },
+    {
+        "name":"English Breakfast",
+        "description":"Mezcla de tés negros: Assam de la India, Los tés de Assam añaden toques profundos de malta y té negro y un rico aroma a caramelo. ",
+        "price":"578",
+        "qty":"39",
+        "thumbnail":"./assets/img/productos_img/english_breakfast.png",
+        "thumbnail_datail":"English Breakfast",
+        "tags": ["bebida", "caliente"],
+    },
+    {
+        "name":"Dragon Drink",
+        "description":"Leche de coco con Mango Dragon Fruit, el sabor de esta fruta similar a mezcla ligeramente dulce entre un kiwi y una pera.",
+        "price":"700",
+        "qty":"7",
+        "thumbnail":"./assets/img/productos_img/dragon_drink.png",
+        "thumbnail_datail":"Dragon Drink",
+        "tags": ["bebida", "heladas"],
+    },
+    {
+        "name":"Caramel Frappuccino",
+        "description":"Frappuccino a base de café. Dulce combinación de caramelo, café, leche y hielo, decorado con un remolino de crema batida y caramelo.",
+        "price":"380",
+        "qty":"70",
+        "thumbnail":"./assets/img/productos_img/caramel_frappuccino.png",
+        "thumbnail_datail":"Caramel Frappuccino",
+        "tags": ["bebida", "frio"],
     }
 
 ]
@@ -99,7 +203,14 @@ class Product{
 dataProduct.forEach(product => {
 
     // INSTANCIA DE NUEVO PRODUCTO ITERADO
-    let new_product = new Product(product.name, product.thumbnail_datail, product.description, product.thumbnail, product.price, product.tags, product.qty);
+    let new_product = new Product(
+        product.name, 
+        product.thumbnail_datail, 
+        product.description, 
+        product.thumbnail, 
+        product.price, 
+        product.tags, 
+        product.qty);
 
     // ALMACEN DE PRODUCTO
     inventory.push(new_product)
@@ -114,8 +225,6 @@ const showProductsMarket = () => {
 
     inventory.forEach( product => {
 
-        console.log(product)
-
         const card = document.createElement("div");
         card.classList.add("col-12", "col-md-6", "col-lg-4", "col-xxl-2", "mb-4");
         card.innerHTML = `
@@ -124,8 +233,8 @@ const showProductsMarket = () => {
             <div class="card-body">
             <h5 class="card-title">${product.name}</h5>
             <div class="badges mt-2 mb-2 ">
-                <span class="badge rounded-pill text-bg-warning">caliente</span>
-                <span class="badge rounded-pill text-bg-primary">bebida</span>
+                <span class="badge rounded-pill ${product.tags[1] === "caliente" ? "text-bg-warning": "text-bg-info"} ">${product.tags[1]}</span>
+                <span class="badge rounded-pill text-bg-primary">${product.tags[0]}</span>
             </div>
             <p class="card-text">${product.description}</p>
             <button id="add" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto">+</button>
@@ -136,6 +245,9 @@ const showProductsMarket = () => {
             </div>
         </div>
         `
+
+        
+
         contentMarketProducts.appendChild(card);
 
     
