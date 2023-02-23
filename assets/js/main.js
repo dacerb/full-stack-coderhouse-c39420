@@ -206,6 +206,7 @@ const resumeCart = document.getElementById("resume_cart");
 const showCart = document.getElementById("show_cart");
 const resumeTotalContainer = document.getElementById("resume_total");
 
+
 showCart.addEventListener("click", () => {
     renderCart();
 });
@@ -285,3 +286,13 @@ const updateCountProduct = (id, qty) => {
 
 
 showProductsMarket();
+
+
+// vaciar carrito **
+// persistir carrito > modal Seguro que deseas vaciar carrito......
+
+// buscador.....
+
+// procesar pago... cargar tarjeta----
+
+// pantalla pago ok... y descontar el stock.....
