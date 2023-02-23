@@ -110,11 +110,10 @@
                 </div>
                 <div class="col-2 offset-2  cart">
 
-                  <button type="button" class="btn btn-outline-light position-relative"  data-bs-toggle="modal" data-bs-target="#modalResume" data-bs-toggle="tooltip"  data-bs-placement="bottom" data-bs-title="Ver carrito">
+                  <button id="show_cart" type="button" class="btn btn-outline-light position-relative"  data-bs-toggle="modal" data-bs-target="#modalResume" data-bs-toggle="tooltip"  data-bs-placement="bottom" data-bs-title="Ver carrito">
                     <img src="./assets/img/food-cart.png" alt="Logo carrito de compras">
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      99+
-                      <span class="visually-hidden">unread messages</span>
+                    <span id="cart_count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger visually-hidden">
+                      
                     </span>
                   </button>
                   <!--button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Open first modal</!--button -->
@@ -195,10 +194,14 @@
             <h1 class="modal-title fs-5" id="modalResume">Resumen</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-           Cuentas y gestion del carrito  + y - prods....
+          <div class="modal-body" >
+          <ol id="resume_cart" class="list-group list-group-numbered">
+
+            <!-- RESUME -->
+
+          </ol>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer" id="resume_total">
             <button class="btn btn-outline-secondary" data-bs-target="#" data-bs-toggle="modal">Seguir de compras</button>
             <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal">Ir a pagar</button>
           </div>

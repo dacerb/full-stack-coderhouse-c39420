@@ -151,6 +151,19 @@ header {
 /* ---------> FOOTER END */
 
 
+/* ---------> MODAL */
+#resume_total_text {
+    font-weight: 800;
+    letter-spacing: var(--space_letter);
+    text-transform: uppercase;
+    color: var(--text_color_lighting);
+    background-color: var(--acent);
+}
+
+/* ---------> MODAL END */
+
+
+
 
 
 /* ------- MAPS -------------*/
