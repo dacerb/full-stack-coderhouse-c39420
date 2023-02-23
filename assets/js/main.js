@@ -1,17 +1,3 @@
-/*
-
-1. inventario
-2. listar productos
-3. agregar al carrito
-4. quitar del carrito
-5. vaciar carrito
-
-6. calular total compra
-7. finalizar compra
-8. guardar carrito en el local storage
-
-*/
-
 // DEFINICION DE CONSTANTES INVENTARIO Y DATA PRODUCTOS...
 const inventory = [];
 const cart = [];
@@ -101,6 +87,7 @@ class Product{
     };
 };
 
+
 // CARGA DE PRODUCTOS EN EL EL INVENTARIO
 dataProduct.forEach(product => {
 
@@ -118,6 +105,7 @@ dataProduct.forEach(product => {
     // ALMACEN DE PRODUCTO
     inventory.push(new_product)
 })
+
 
 // AGERGAR PRODUCTOS EN EL DOM
 const contentMarketProducts = document.getElementById('market_products')
@@ -171,15 +159,11 @@ const showProductsMarket = () => {
 
 
 const addToCart = (id) => {
-
     const found_product_in_cart = cart.find(product => product.id === id);
     if (found_product_in_cart) {
-        
-
         if (found_product_in_cart.qty > found_product_in_cart.cart_add_qty) {
             found_product_in_cart.cart_add_qty++;
             updateCountProduct(found_product_in_cart.id, found_product_in_cart.cart_add_qty)
-            console.log("add to cart id ", found_product_in_cart.id, "qty:", found_product_in_cart.cart_add_qty)
         }
     
     } else {
@@ -188,20 +172,15 @@ const addToCart = (id) => {
         cart.push(found_product_in_inventary);
         updateCountProduct(found_product_in_inventary.id, found_product_in_inventary.cart_add_qty)
     }
-  
     updateCountCart();
 }
 
 const removeToCart = (id) => {
-
     const found_product_in_cart = cart.find(product => product.id === id);
     if (found_product_in_cart) {
-        
         if (found_product_in_cart.cart_add_qty > 1 ) {
-            
             found_product_in_cart.cart_add_qty--;
             updateCountProduct(found_product_in_cart.id, found_product_in_cart.cart_add_qty)
-            console.log("remove to cart id ", "id:", found_product_in_cart.id, "qty:", found_product_in_cart.cart_add_qty)
 
         }else {
             let found_product_in_cart_idx = cart.indexOf(found_product_in_cart);
@@ -228,10 +207,10 @@ showCart.addEventListener("click", () => {
 const renderCart = () => {
     let sumTotal = 0;
     resumeCart.innerHTML = "";
-    resumeTotalContainer.innerHTML = `
+    resumeTotalContainer.innerHTML = ` 
         <button class="btn btn-outline-secondary" data-bs-target="#" data-bs-toggle="modal">Seguir de compras</button>
         <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal" disabled>Ir a pagar</button>
-        `
+        ` // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
 
     cart.forEach(product => {
         const resumeItem = document.createElement("li");
@@ -244,14 +223,11 @@ const renderCart = () => {
                 </div>
                 <span class="badge bg-primary rounded-pill">${product.cart_add_qty}</span>
             `
-
-
             resumeCart.appendChild(resumeItem);
             
         sumTotal = parseInt(product.price * product.cart_add_qty) + parseInt(sumTotal)
 
         if (sumTotal > 0) { // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
-            
             resumeTotalContainer.innerHTML = `
             <button type="button" class="btn " disabled><span id="resume_total_text">Total: $${sumTotal}</span></button>
             <button class="btn btn-outline-secondary" data-bs-target="#" data-bs-toggle="modal">Seguir de compras</button>
@@ -275,9 +251,6 @@ const renderCart = () => {
     });
 };
 
-
-
-
 const updateCountCart = () => {
     let coutProducts = 0;
     const countCart = document.getElementById("cart_count");
@@ -300,7 +273,8 @@ const updateCountProduct = (id, qty) => {
     }else {
         productCardQty.innerHTML = ""
     }
-    
 }
+
+
 
 showProductsMarket();

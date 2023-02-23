@@ -1,0 +1,128 @@
+
+
+:root {
+
+    --acent: #e9ff88;
+    --first: #f3d8fa;
+    --secondary: #4a354f;
+    --dark: #19191a;
+    --white: whitesmoke;
+    --tile_color_lighting: var(--dark);
+    --text_color_lighting: var(--secondary);
+
+    --tile_color_dark: var(--acent);
+    --text_color_dark: var(--first);
+    --space_letter: 1.2px;
+    --space_letter_x: 2px;
+    --opacity_green: hsla(71, 69%, 66%, 0.9);
+}
+
+
+/* ---------> HEADER */
+header {
+    background-color: #fff;
+}
+
+
+#header nav form .mode label {
+    padding: 0 6px;
+    background-color: #e9ff88;
+    margin-right: 10px;
+}
+
+/*  ---------> HEADER END */
+
+
+
+/* ---------> MAIN */
+#main {
+  background-color: var(--dark);
+}
+#main .about_as .text_starbucks {
+    border-left: var(--opacity_green) 8px solid;
+}
+
+
+#main .buy .market-section {
+    background-image: var(--white);
+}
+
+
+
+
+#main .buy .market-section .title_market h2{
+    color: var(--tile_color_dark);
+}
+
+#show_cart  {
+    background-color: var(--white);
+    width: 5px;
+}
+
+.about_as {
+    background-color: var(--opacity_green);
+}
+
+
+#about_as > div > div > div:nth-child(1) {
+    background-color: var(--dark) !important; 
+}
+
+#main .buy .market-section .market_products .img-producto {
+
+    background-color: var(--white);
+
+}
+
+.text_starbucks {
+    background-color: var(--dark) !important;
+    color: #e9ff88;
+}
+
+
+
+.grl_separation {
+    border: 2px solid var(--tile_color_lighting);
+}
+
+.effects .container-fluid{
+
+    border-top: solid 8px var(--white);   
+
+/*  ---------> MAIN END */
+
+
+
+/*  ---------> FOOTER */
+
+#footer {
+    background-color: var(--dark);
+
+}
+
+#footer .container a {
+
+    color: var(--opacity_green);
+
+}
+
+#footer .container h2 {
+    color: var(--acent);
+ 
+}
+
+#footer .container p {
+
+    color: var(--text_color_dark);
+}
+/* ---------> FOOTER END */
+
+
+/* ---------> MODAL */
+#resume_total_text {
+
+    color: var(--text_color_lighting);
+    background-color: var(--acent);
+}
+
+/* ---------> MODAL END */
