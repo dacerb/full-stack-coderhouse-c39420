@@ -296,3 +296,8 @@ showProductsMarket();
 // procesar pago... cargar tarjeta----
 
 // pantalla pago ok... y descontar el stock.....
+
+
+// taer productos por fetch.....
+
+// (libre... ???)
