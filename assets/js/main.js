@@ -301,3 +301,6 @@ showProductsMarket();
 // taer productos por fetch.....
 
 // (libre... ???)
+
+
+// fix switch cuando el modo esta dark 
