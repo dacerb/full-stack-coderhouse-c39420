@@ -2,7 +2,6 @@
 let inventory = [];
 let cart = [];
 
-
 const dataProduct = [
     {
         "id": 0,
@@ -89,7 +88,6 @@ class Product{
     };
 };
 
-
 // CARGA DE PRODUCTOS EN EL EL INVENTARIO
 dataProduct.forEach(product => {
 
@@ -107,7 +105,6 @@ dataProduct.forEach(product => {
     // ALMACEN DE PRODUCTO
     inventory.push(new_product)
 })
-
 
 // AGERGAR PRODUCTOS EN EL DOM
 const contentMarketProducts = document.getElementById('market_products')
@@ -212,11 +209,9 @@ const removeOfCart = (id) => {
 // ACTUALIZACION DE CARRITO DE COMPRAS
 const showCart = document.getElementById("show_cart");
 
-
 showCart.addEventListener("click", () => {
     renderCart();
 });
-
 
 const renderCart = () => {
     const resumeCart = document.getElementById("resume_cart");
@@ -274,7 +269,6 @@ const renderCart = () => {
 });
 };
 
-
 // VACIAR CARRITO, LIMPIA DISPLAY DE CANTIDAD EN PRODUCTOS Y TOTAL DE ART EN CARRITO
 const cleanCartProces = () => {
     cart = [];
@@ -319,7 +313,6 @@ payedProducts.addEventListener("click", () => {
     processPayment();
 })
 
-
 const processPayment = () => {
 
     cart.forEach(product_cart => {
@@ -349,11 +342,8 @@ const processPayment = () => {
     
 }
 
-
 // DEBE EXISTIR ANTES DE ACTUALIZAR EL CARRITO DESDE EL LOCAL STORAGE
 showProductsMarket();
-
-
 
 // STORAGE 
 // CARGA DE CARRITO DE COMPRAS 
@@ -366,13 +356,10 @@ if (localStorage.getItem("storage_cart")){
     });
 }
 
-
 const saveCartStorage = (cart) => {
     localStorage.setItem("storage_cart", JSON.stringify(cart));
     
 }
-
-
 
 
 // buscador.....
