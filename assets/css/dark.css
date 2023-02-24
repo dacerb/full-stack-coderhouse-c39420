@@ -17,7 +17,7 @@
     --opacity_green: hsla(71, 69%, 66%, 0.9);
 }
 
-
+ 
 /* ---------> MAIN */
 #main {
   background-color: var(--dark);
