@@ -160,6 +160,27 @@ header {
     background-color: var(--acent);
 }
 
+
+#alert_clear h1 {
+    font-weight: 800;
+    letter-spacing: var(--space_letter);
+    color: var(--tile_color_lighting);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#alert_clear p {
+    letter-spacing: var(--space_letter);
+    color: var(--tile_color_lighting);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+#alert_clear img {
+    margin-left: 50%;
+    width: 50%;
+}
 /* ---------> MODAL END */
 
 

@@ -250,6 +250,33 @@
         </div>
       </div>
     </div>
+
+    <!-- PROCESAR PAGO  -->
+    <div class="modal fade" id="modalRemoveValidate" aria-hidden="true" aria-labelledby="modalPay" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+         
+            <div id="alert_clear">
+              <h1 class="modal-title fs-5" id="modalPay">¡Atencion!.....</h1>
+              <p>Estas apunto de vaciar el carrito <br><strong>Vas a dejar un Gatio sin comer </strong></p>
+              <img src="./assets/img/sad.png" alt="Gatito Triste">
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" data-bs-target="#modalResume" data-bs-toggle="modal">Volver</button>
+            <button class="btn btn-danger" data-bs-target="#" data-bs-toggle="modal" id="clear_cart">Vaciar</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- /MODALS-->
 
      <!-- SCRIPTS JS-->

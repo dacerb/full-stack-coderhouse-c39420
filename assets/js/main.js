@@ -143,13 +143,13 @@ const showProductsMarket = () => {
         // CONTROL CARRITO -+
         const addCart = document.getElementById(`add_cart_id_${product.id}`);
         addCart.addEventListener("click", () => {
-            addToCart(product.id);
+            addOfCart(product.id);
             renderCart();
         });
 
         const removeCart = document.getElementById(`remove_cart_id_${product.id}`);
         removeCart.addEventListener("click", () => {
-            removeToCart(product.id);
+            removeOfCart(product.id);
             renderCart();
         });
 
@@ -157,8 +157,7 @@ const showProductsMarket = () => {
     });
 }
 
-
-const addToCart = (id) => {
+const addOfCart = (id) => {
     const found_product_in_cart = cart.find(product => product.id === id);
     if (found_product_in_cart) {
         if (found_product_in_cart.qty > found_product_in_cart.cart_add_qty) {
@@ -175,7 +174,7 @@ const addToCart = (id) => {
     updateCountCart();
 }
 
-const removeToCart = (id) => {
+const removeOfCart = (id) => {
     const found_product_in_cart = cart.find(product => product.id === id);
     if (found_product_in_cart) {
         if (found_product_in_cart.cart_add_qty > 0 ) {
@@ -199,11 +198,6 @@ const removeToCart = (id) => {
     } 
     updateCountCart();
 }
-
-
-
-
-
 
 // ACTUALIZACION DE CARRITO DE COMPRAS
 const resumeCart = document.getElementById("resume_cart");
@@ -242,21 +236,24 @@ const renderCart = () => {
             if (sumTotal > 0) { // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
                 resumeTotalContainer.innerHTML = `
                 <button type="button" class="btn " disabled><span id="resume_total_text">Total: $${sumTotal}</span></button>
-                <button id="clear_cart"class="btn btn-outline-danger">Vaciar Carrito</button>
+                <button class="btn btn-outline-danger" data-bs-target="#modalRemoveValidate" data-bs-toggle="modal">Vaciar Carrito</button>
                 <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal">Ir a pagar</button>
                 `
             }
     
+            //id="clear_cart"
+
+            
             // CONTROL CARRITO -+
             const addCart = document.getElementById(`resume_add_cart_id_${product.id}`);
                 addCart.addEventListener("click", () => {
-                addToCart(product.id)
+                addOfCart(product.id)
                 renderCart();
             });
     
             const removeCart = document.getElementById(`resume_remove_cart_id_${product.id}`);
             removeCart.addEventListener("click", () => {
-                removeToCart(product.id)
+                removeOfCart(product.id)
                 renderCart();
             });
     
@@ -272,21 +269,20 @@ const renderCart = () => {
 };
 
 
-
-
 // VACIAR CARRITO, LIMPIA DISPLAY DE CANTIDAD EN PRODUCTOS Y TOTAL DE ART EN CARRITO
 const cleanCartProces = () => {
     cart = [];
 
     inventory.forEach(product => {
-        updateCountProduct(product.id, 0)
+        updateCountProduct(product.id, 0);
+        product.cart_add_qty=0;
     })
+
+
     updateCountCart();
 };
 
-
-
-
+// ACTUALIZAR PANTALLAS
 const updateCountCart = () => {
     let coutProducts = 0;
     const countCart = document.getElementById("cart_count");
@@ -312,11 +308,9 @@ const updateCountProduct = (id, qty) => {
 }
 
 
-
 showProductsMarket();
 
 
-// vaciar carrito **
 // persistir carrito > modal Seguro que deseas vaciar carrito......
 
 // buscador.....
@@ -329,6 +323,3 @@ showProductsMarket();
 // taer productos por fetch.....
 
 // (libre... ???)
-
-
-// fix switch cuando el modo esta dark 
