@@ -350,6 +350,7 @@ showProductsMarket();
 if (localStorage.getItem("storage_cart")){
     cart = JSON.parse(localStorage.getItem("storage_cart"))
     updateCountCart();
+    renderCart();
 
     cart.forEach(product => {
         updateCountProduct(product.id, product.cart_add_qty);

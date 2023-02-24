@@ -17,10 +17,36 @@
     --opacity_green: hsla(71, 69%, 66%, 0.9);
 }
 
- 
+
 /* ---------> MAIN */
 #main {
   background-color: var(--dark);
+}
+
+#card_market_product  {
+    background-color: #323234;
+    color: var(--tile_color_dark);
+
+    transition-property: opacity, left;
+    transition-duration: 3s, 5s;
+
+}
+
+
+#card_market_product:hover {
+    box-shadow: -1px 0px 70px 1px rgba(245,245,245,0.3) !important;
+    -webkit-box-shadow: -1px 0px 10px 1px rgba(245,245,245,0.3) !important;
+    -moz-box-shadow: -1px 0px 70px 1px rgba(245,245,245,0.3) !important;
+
+}
+
+
+
+#card_market_product .card-img-top.img-producto {
+    margin-bottom: 10px !important;
+}
+#card_market_product .card-body {
+    border-top: var(--dark) 1px solid ;
 }
 
 
