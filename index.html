@@ -192,7 +192,7 @@
             <h1 class="modal-title fs-5" id="modalResume">Resumen</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body" >
+          <div class="modal-body modal_custom_styles" >
           <ol id="resume_cart" class="list-group list-group-numbered">
 
             <!-- RESUME -->
@@ -215,16 +215,20 @@
             <h1 class="modal-title fs-5" id="modalPay">Metodo de pago</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            input de tarjeta o medio de pago OT ...... 
-            magias 
+
+          
+          <div class="modal-body modal_custom_styles">
           </div>
           <div class="alert alert-warning" role="alert">
-            A simple danger alert—check it out! ESTAS POR REALIZAR EL PAGO PERRI
+            <i class="fa-solid fa-credit-card"></i>
+            <img src="./assets/img/credit-card-solid.svg" alt="">
           </div>
+
+
+
           <div class="modal-footer">
             <button class="btn btn-outline-secondary" data-bs-target="#modalResume" data-bs-toggle="modal">Volver</button>
-            <button class="btn btn-primary" data-bs-target="#modalPayed" data-bs-toggle="modal">Pagar</button>
+            <button id="payed_modal" class="btn btn-primary" data-bs-target="#modalPayed" data-bs-toggle="modal">Pagar</button>
           </div>
         </div>
       </div>
@@ -235,15 +239,17 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="modalPayed">PAGASTE PERRI</h1>
+            <h1 class="modal-title fs-5" id="modalPayed">Pago Exitoso</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            Todo chill.... ver como descontar stock y flshear envio de mail etc....
+
+          <div class="modal-body modal_custom_styles">
             <div class="alert alert-success" role="alert">
-              A simple success alert—check it out! A TU CASA T CABI PERROTE YA FUE LA GUITA Y EL PROD
+              <h1>¡Tu Pago se realizo con Exito!..</h1>
+              <p><strong><i>Muchas gracias por elegirnos</i></strong></p>
             </div>
           </div>
+
           <div class="modal-footer">
             <button class="btn btn-success" data-bs-target="#" data-bs-toggle="modal">cerrar</button>
           </div>
@@ -251,25 +257,22 @@
       </div>
     </div>
 
-    <!-- PROCESAR PAGO  -->
+    <!-- VALIDAR VACIAR CARRITO  -->
     <div class="modal fade" id="modalRemoveValidate" aria-hidden="true" aria-labelledby="modalPay" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-
-
           <div class="alert alert-danger d-flex align-items-center" role="alert">
-         
-            <div id="alert_clear">
+
+            <div id="alert_clear" class="modal_custom_styles">
               <h1 class="modal-title fs-5" id="modalPay">¡Atencion!.....</h1>
               <p>Estas apunto de vaciar el carrito <br><strong>Vas a dejar un Gatio sin comer </strong></p>
               <img src="./assets/img/sad.png" alt="Gatito Triste">
             </div>
 
           </div>
-
           <div class="modal-footer">
             <button class="btn btn-outline-secondary" data-bs-target="#modalResume" data-bs-toggle="modal">Volver</button>
             <button class="btn btn-danger" data-bs-target="#" data-bs-toggle="modal" id="clear_cart">Vaciar</button>

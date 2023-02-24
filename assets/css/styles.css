@@ -161,7 +161,7 @@ header {
 }
 
 
-#alert_clear h1 {
+.modal_custom_stylesear h1 {
     font-weight: 800;
     letter-spacing: var(--space_letter);
     color: var(--tile_color_lighting);
@@ -169,7 +169,7 @@ header {
     text-transform: uppercase;
 }
 
-#alert_clear p {
+.modal_custom_styles p {
     letter-spacing: var(--space_letter);
     color: var(--tile_color_lighting);
     text-decoration: none;
@@ -177,7 +177,7 @@ header {
 }
 
 
-#alert_clear img {
+.modal_custom_styles img {
     margin-left: 50%;
     width: 50%;
 }

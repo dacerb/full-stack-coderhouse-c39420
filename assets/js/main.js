@@ -1,6 +1,8 @@
 // DEFINICION DE CONSTANTES INVENTARIO Y DATA PRODUCTOS...
-const inventory = [];
+let inventory = [];
 let cart = [];
+
+
 const dataProduct = [
     {
         "id": 0,
@@ -112,10 +114,12 @@ const contentMarketProducts = document.getElementById('market_products')
 
 const showProductsMarket = () => {
 
+    contentMarketProducts.innerHTML = "";
     inventory.forEach( product => {
 
+        let contronl_enabled = parseInt(product.qty) > 0
         const card = document.createElement("div");
-
+        card.innerHTML = "";
         card.classList.add("col-12", "col-md-6", "col-lg-4", "col-xxl-2", "mb-4");
         card.innerHTML = `
         <div class="card shadow-lg" id="card_market_product">
@@ -129,8 +133,8 @@ const showProductsMarket = () => {
                 <span class="badge rounded-pill ${product.qty > 10 ? "text-bg-success": "text-bg-danger"}">stock: ${product.qty}</span>
             </div>
             <p class="card-text">${product.description}</p>
-            <button id="add_cart_id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto">+</button>
-            <button id="remove_cart_id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto ">-</button>
+            <button id="add_cart_id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto" ${contronl_enabled ? "enabled": "disabled"}>+</button>
+            <button id="remove_cart_id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto " ${contronl_enabled ? "enabled": "disabled"}>-</button>
             <button id="card-cart" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalResume" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Ir al carrito">
                 <img src="./assets/img/food-cart.png" alt="Logo carrito de compras">
             </button>
@@ -138,6 +142,7 @@ const showProductsMarket = () => {
             </div>
         </div>
         `
+
         contentMarketProducts.appendChild(card);
 
         // CONTROL CARRITO -+
@@ -158,7 +163,9 @@ const showProductsMarket = () => {
 }
 
 const addOfCart = (id) => {
-    const found_product_in_cart = cart.find(product => product.id === id);
+    let found_product_in_cart = cart.find(product => product.id === id);
+    let found_product_in_cart_idx = cart.indexOf(found_product_in_cart);
+
     if (found_product_in_cart) {
         if (found_product_in_cart.qty > found_product_in_cart.cart_add_qty) {
             found_product_in_cart.cart_add_qty++;
@@ -171,6 +178,7 @@ const addOfCart = (id) => {
         cart.push(found_product_in_inventary);
         updateCountProduct(found_product_in_inventary.id, found_product_in_inventary.cart_add_qty)
     }
+    saveCartStorage(cart)
     updateCountCart();
 }
 
@@ -195,14 +203,14 @@ const removeOfCart = (id) => {
             }
             updateCountProduct(found_product_in_cart.id, 0)
         }
+        
     } 
+    saveCartStorage(cart)
     updateCountCart();
 }
 
 // ACTUALIZACION DE CARRITO DE COMPRAS
-const resumeCart = document.getElementById("resume_cart");
 const showCart = document.getElementById("show_cart");
-const resumeTotalContainer = document.getElementById("resume_total");
 
 
 showCart.addEventListener("click", () => {
@@ -211,6 +219,8 @@ showCart.addEventListener("click", () => {
 
 
 const renderCart = () => {
+    const resumeCart = document.getElementById("resume_cart");
+    const resumeTotalContainer = document.getElementById("resume_total");
     let sumTotal = 0;
     resumeCart.innerHTML = "";
     resumeTotalContainer.innerHTML = ` 
@@ -218,54 +228,50 @@ const renderCart = () => {
         <button id="hola" class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal" disabled>Ir a pagar</button>
         ` // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
 
-        cart.forEach(product => {
-            const resumeItem = document.createElement("li");
-            resumeItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start");
-            resumeItem.innerHTML = `
-                    <div class="ms-2 me-auto">
-                    <div class="fw-bold">${product.name}</div>
-                    <button id="resume_add_cart_id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto">+</button>
-                    <button id="resume_remove_cart_id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto ">-</button>
-                    </div>
-                    <span class="badge bg-primary rounded-pill">${product.cart_add_qty}</span>
-                `
-                resumeCart.appendChild(resumeItem);
-                
-            sumTotal = parseInt(product.price * product.cart_add_qty) + parseInt(sumTotal)
-    
-            if (sumTotal > 0) { // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
-                resumeTotalContainer.innerHTML = `
-                <button type="button" class="btn " disabled><span id="resume_total_text">Total: $${sumTotal}</span></button>
-                <button class="btn btn-outline-danger" data-bs-target="#modalRemoveValidate" data-bs-toggle="modal">Vaciar Carrito</button>
-                <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal">Ir a pagar</button>
-                `
-            }
-    
-            //id="clear_cart"
+    cart.forEach(product => {
+        const resumeItem = document.createElement("li");
+        resumeItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start");
+        resumeItem.innerHTML = `
+                <div class="ms-2 me-auto">
+                <div class="fw-bold">${product.name}</div>
+                <button id="resume_add_cart_id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto">+</button>
+                <button id="resume_remove_cart_id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto ">-</button>
+                </div>
+                <span class="badge bg-primary rounded-pill">${product.cart_add_qty}</span>
+            `
+        resumeCart.appendChild(resumeItem);
+        sumTotal = parseInt(product.price * product.cart_add_qty) + parseInt(sumTotal)
 
-            
-            // CONTROL CARRITO -+
-            const addCart = document.getElementById(`resume_add_cart_id_${product.id}`);
-                addCart.addEventListener("click", () => {
-                addOfCart(product.id)
-                renderCart();
-            });
+        if (sumTotal > 0) { // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
+            resumeTotalContainer.innerHTML = `
+            <button type="button" class="btn " disabled><span id="resume_total_text">Total: $${sumTotal}</span></button>
+            <button class="btn btn-outline-danger" data-bs-target="#modalRemoveValidate" data-bs-toggle="modal">Vaciar Carrito</button>
+            <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal">Ir a pagar</button>
+            `
+        }
     
-            const removeCart = document.getElementById(`resume_remove_cart_id_${product.id}`);
-            removeCart.addEventListener("click", () => {
-                removeOfCart(product.id)
-                renderCart();
-            });
-    
-            const clearCart = document.getElementById("clear_cart");
-            clearCart.addEventListener("click", () => {
-                cleanCartProces();
-                renderCart();
-            });
+    // CONTROL CARRITO -+
+    const addCart = document.getElementById(`resume_add_cart_id_${product.id}`);
+        addCart.addEventListener("click", () => {
+        addOfCart(product.id)
+        renderCart();
+    });
+
+    const removeCart = document.getElementById(`resume_remove_cart_id_${product.id}`);
+    removeCart.addEventListener("click", () => {
+        removeOfCart(product.id)
+        renderCart();
+    });
+
+    const clearCart = document.getElementById("clear_cart");
+    clearCart.addEventListener("click", () => {
+        cleanCartProces();
+        renderCart();
+    });
     
 
         
-    });
+});
 };
 
 
@@ -278,7 +284,7 @@ const cleanCartProces = () => {
         product.cart_add_qty=0;
     })
 
-
+    saveCartStorage(cart)
     updateCountCart();
 };
 
@@ -299,7 +305,7 @@ const updateCountCart = () => {
 };
 
 const updateCountProduct = (id, qty) => {
-    const productCardQty = document.getElementById(`product_card_id_qty_${id}`)
+    let productCardQty = document.getElementById(`product_card_id_qty_${id}`)
     if (qty > 0) {
         productCardQty.innerHTML = qty
     }else {
@@ -307,18 +313,69 @@ const updateCountProduct = (id, qty) => {
     }
 }
 
+// PAGOS
+const payedProducts = document.getElementById("payed_modal");
+payedProducts.addEventListener("click", () => {
+    processPayment();
+})
 
+
+const processPayment = () => {
+
+    cart.forEach(product_cart => {
+
+        let found_product_in_inventory = inventory.find(product_invent => product_invent.id === product_cart.id);
+        let found_product_in_inventory_idx = inventory.indexOf(found_product_in_inventory);
+
+        let update_product = new Product(
+            found_product_in_inventory.id,
+            found_product_in_inventory.name, 
+            found_product_in_inventory.thumbnail_datail, 
+            found_product_in_inventory.description, 
+            found_product_in_inventory.thumbnail, 
+            found_product_in_inventory.price, 
+            found_product_in_inventory.tags, 
+            parseInt(found_product_in_inventory.qty) - parseInt(product_cart.cart_add_qty)
+            );
+
+        inventory.splice(found_product_in_inventory_idx, 1)
+        inventory.push(update_product)
+
+        cleanCartProces();
+        showProductsMarket();
+        renderCart();
+    });
+
+    
+}
+
+
+// DEBE EXISTIR ANTES DE ACTUALIZAR EL CARRITO DESDE EL LOCAL STORAGE
 showProductsMarket();
 
 
-// persistir carrito > modal Seguro que deseas vaciar carrito......
+
+// STORAGE 
+// CARGA DE CARRITO DE COMPRAS 
+if (localStorage.getItem("storage_cart")){
+    cart = JSON.parse(localStorage.getItem("storage_cart"))
+    updateCountCart();
+
+    cart.forEach(product => {
+        updateCountProduct(product.id, product.cart_add_qty);
+    });
+}
+
+
+const saveCartStorage = (cart) => {
+    localStorage.setItem("storage_cart", JSON.stringify(cart));
+    
+}
+
+
+
 
 // buscador.....
-
-// procesar pago... cargar tarjeta----
-
-// pantalla pago ok... y descontar el stock.....
-
 
 // taer productos por fetch.....
 
