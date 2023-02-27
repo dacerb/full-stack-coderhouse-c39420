@@ -68,7 +68,7 @@
     background-color: var(--dark) !important; 
 }
 
-#main .buy .market-section .market_products .img-producto {
+#main .buy .market-section .container_market_products .img-producto {
     background-color: var(--white);
 }
 

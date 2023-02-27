@@ -1,8 +1,9 @@
 // DEFINICION DE CONSTANTES INVENTARIO Y DATA PRODUCTOS...
-let inventory = [];
-let cart = [];
 
-const dataProduct = [
+let inventory_list = [];
+let cart_list = [];
+
+const products_data = [
     {
         "id": 0,
         "name":"Chocolate Caliente",
@@ -89,7 +90,7 @@ class Product{
 };
 
 // CARGA DE PRODUCTOS EN EL EL INVENTARIO
-dataProduct.forEach(product => {
+products_data.forEach(product => {
 
     // INSTANCIA DE NUEVO PRODUCTO ITERADO
     let new_product = new Product(
@@ -103,16 +104,16 @@ dataProduct.forEach(product => {
         product.qty);
 
     // ALMACEN DE PRODUCTO
-    inventory.push(new_product)
+    inventory_list.push(new_product)
 })
 
 // AGERGAR PRODUCTOS EN EL DOM
-const contentMarketProducts = document.getElementById('market_products')
+const container_market_products = document.getElementById('container_market_products')
 
-const showProductsMarket = () => {
+const show_products_market = () => {
 
-    contentMarketProducts.innerHTML = "";
-    inventory.forEach( product => {
+    container_market_products.innerHTML = "";
+    inventory_list.forEach( product => {
 
         let contronl_enabled = parseInt(product.qty) > 0
         const card = document.createElement("div");
@@ -130,8 +131,8 @@ const showProductsMarket = () => {
                 <span class="badge rounded-pill ${product.qty > 10 ? "text-bg-success": "text-bg-danger"}">stock: ${product.qty}</span>
             </div>
             <p class="card-text">${product.description}</p>
-            <button id="add_cart_id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto" ${contronl_enabled ? "enabled": "disabled"}>+</button>
-            <button id="remove_cart_id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto " ${contronl_enabled ? "enabled": "disabled"}>-</button>
+            <button id="add__id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto" ${contronl_enabled ? "enabled": "disabled"}>+</button>
+            <button id="remove__id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto " ${contronl_enabled ? "enabled": "disabled"}>-</button>
             <button id="card-cart" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalResume" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Ir al carrito">
                 <img src="./assets/img/food-cart.png" alt="Logo carrito de compras">
             </button>
@@ -140,128 +141,128 @@ const showProductsMarket = () => {
         </div>
         `
 
-        contentMarketProducts.appendChild(card);
+        container_market_products.appendChild(card);
 
         // CONTROL CARRITO -+
-        const addCart = document.getElementById(`add_cart_id_${product.id}`);
-        addCart.addEventListener("click", () => {
-            addOfCart(product.id);
-            renderCart();
+        const add = document.getElementById(`add__id_${product.id}`);
+        add.addEventListener("click", () => {
+            add_to_cart(product.id);
+            assemble_cart();
         });
 
-        const removeCart = document.getElementById(`remove_cart_id_${product.id}`);
-        removeCart.addEventListener("click", () => {
-            removeOfCart(product.id);
-            renderCart();
+        const remove = document.getElementById(`remove__id_${product.id}`);
+        remove.addEventListener("click", () => {
+            remove_to_cart(product.id);
+            assemble_cart();
         });
 
 
     });
 }
 
-const addOfCart = (id) => {
-    let found_product_in_cart = cart.find(product => product.id === id);
-    let found_product_in_cart_idx = cart.indexOf(found_product_in_cart);
+const add_to_cart = (id) => {
+    let found_product_in_cart = cart_list.find(product => product.id === id);
+    let found_product_in_cart_idx = cart_list.indexOf(found_product_in_cart);
 
     if (found_product_in_cart) {
         if (found_product_in_cart.qty > found_product_in_cart.cart_add_qty) {
             found_product_in_cart.cart_add_qty++;
-            updateCountProduct(found_product_in_cart.id, found_product_in_cart.cart_add_qty)
+            update_count_products(found_product_in_cart.id, found_product_in_cart.cart_add_qty)
         }
     
     } else {
-        const found_product_in_inventary = inventory.find(product => product.id === id);
+        const found_product_in_inventary = inventory_list.find(product => product.id === id);
         found_product_in_inventary.cart_add_qty++
-        cart.push(found_product_in_inventary);
-        updateCountProduct(found_product_in_inventary.id, found_product_in_inventary.cart_add_qty)
+        cart_list.push(found_product_in_inventary);
+        update_count_products(found_product_in_inventary.id, found_product_in_inventary.cart_add_qty)
     }
-    saveCartStorage(cart)
-    updateCountCart();
+    save_cart_to_storage(cart_list)
+    cart_update_count();
 }
 
-const removeOfCart = (id) => {
-    const found_product_in_cart = cart.find(product => product.id === id);
+const remove_to_cart = (id) => {
+    const found_product_in_cart = cart_list.find(product => product.id === id);
     if (found_product_in_cart) {
         if (found_product_in_cart.cart_add_qty > 0 ) {
             found_product_in_cart.cart_add_qty--;
-            updateCountProduct(found_product_in_cart.id, found_product_in_cart.cart_add_qty)
+            update_count_products(found_product_in_cart.id, found_product_in_cart.cart_add_qty)
 
         if (found_product_in_cart.cart_add_qty == 0) {
-            let found_product_in_cart_idx = cart.indexOf(found_product_in_cart);
+            let found_product_in_cart_idx = cart_list.indexOf(found_product_in_cart);
             if (found_product_in_cart_idx >= 0) {
-                cart.splice(found_product_in_cart_idx,1)
+                cart_list.splice(found_product_in_cart_idx,1)
             }
         }
 
         }else {
-            let found_product_in_cart_idx = cart.indexOf(found_product_in_cart);
+            let found_product_in_cart_idx = cart_list.indexOf(found_product_in_cart);
             if (found_product_in_cart_idx >= 0) {
-                cart.splice(found_product_in_cart_idx,1)
+                cart_list.splice(found_product_in_cart_idx,1)
             }
-            updateCountProduct(found_product_in_cart.id, 0)
+            update_count_products(found_product_in_cart.id, 0)
         }
         
     } 
-    saveCartStorage(cart)
-    updateCountCart();
+    save_cart_to_storage(cart_list)
+    cart_update_count();
 }
 
 // ACTUALIZACION DE CARRITO DE COMPRAS
-const showCart = document.getElementById("show_cart");
+const show_cart = document.getElementById("show_cart");
 
-showCart.addEventListener("click", () => {
-    renderCart();
+show_cart.addEventListener("click", () => {
+    assemble_cart();
 });
 
-const renderCart = () => {
-    const resumeCart = document.getElementById("resume_cart");
-    const resumeTotalContainer = document.getElementById("resume_total");
-    let sumTotal = 0;
-    resumeCart.innerHTML = "";
-    resumeTotalContainer.innerHTML = ` 
+const assemble_cart = () => {
+    const cart_summary = document.getElementById("cart_summary");
+    const summary_total_container = document.getElementById("summary_total_container");
+    let total_sum = 0;
+    cart_summary.innerHTML = "";
+    summary_total_container.innerHTML = ` 
         <button class="btn btn-outline-secondary" data-bs-target="#" data-bs-toggle="modal">Seguir de compras</button>
         <button id="hola" class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal" disabled>Ir a pagar</button>
         ` // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
 
-    cart.forEach(product => {
-        const resumeItem = document.createElement("li");
-        resumeItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start");
-        resumeItem.innerHTML = `
+    cart_list.forEach(product => {
+        const summary_item = document.createElement("li");
+        summary_item.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start");
+        summary_item.innerHTML = `
                 <div class="ms-2 me-auto">
                 <div class="fw-bold">${product.name}</div>
-                <button id="resume_add_cart_id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto">+</button>
-                <button id="resume_remove_cart_id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto ">-</button>
+                <button id="add_to_cart_id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto">+</button>
+                <button id="remove_to_cart_id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto ">-</button>
                 </div>
                 <span class="badge bg-primary rounded-pill">${product.cart_add_qty}</span>
             `
-        resumeCart.appendChild(resumeItem);
-        sumTotal = parseInt(product.price * product.cart_add_qty) + parseInt(sumTotal)
+        cart_summary.appendChild(summary_item);
+        total_sum = parseInt(product.price * product.cart_add_qty) + parseInt(total_sum)
 
-        if (sumTotal > 0) { // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
-            resumeTotalContainer.innerHTML = `
-            <button type="button" class="btn " disabled><span id="resume_total_text">Total: $${sumTotal}</span></button>
+        if (total_sum > 0) { // MEJORAR PARA NO TENER QUE PASAR TODO ASI EN STRING
+            summary_total_container.innerHTML = `
+            <button type="button" class="btn " disabled><span id="resume_total_text">Total: $${total_sum}</span></button>
             <button class="btn btn-outline-danger" data-bs-target="#modalRemoveValidate" data-bs-toggle="modal">Vaciar Carrito</button>
             <button class="btn btn-primary" data-bs-target="#modalPay" data-bs-toggle="modal">Ir a pagar</button>
             `
         }
     
     // CONTROL CARRITO -+
-    const addCart = document.getElementById(`resume_add_cart_id_${product.id}`);
-        addCart.addEventListener("click", () => {
-        addOfCart(product.id)
-        renderCart();
+    const add_to_cart_id_ = document.getElementById(`add_to_cart_id_${product.id}`);
+        add_to_cart_id_.addEventListener("click", () => {
+        add_to_cart(product.id)
+        assemble_cart();
     });
 
-    const removeCart = document.getElementById(`resume_remove_cart_id_${product.id}`);
-    removeCart.addEventListener("click", () => {
-        removeOfCart(product.id)
-        renderCart();
+    const remove_to_cart_id_ = document.getElementById(`remove_to_cart_id_${product.id}`);
+        remove_to_cart_id_.addEventListener("click", () => {
+        remove_to_cart(product.id)
+        assemble_cart();
     });
 
-    const clearCart = document.getElementById("clear_cart");
-    clearCart.addEventListener("click", () => {
-        cleanCartProces();
-        renderCart();
+    const clear_cart = document.getElementById("clear_cart");
+    clear_cart.addEventListener("click", () => {
+        cart_clean_process();
+        assemble_cart();
     });
     
 
@@ -270,101 +271,102 @@ const renderCart = () => {
 };
 
 // VACIAR CARRITO, LIMPIA DISPLAY DE CANTIDAD EN PRODUCTOS Y TOTAL DE ART EN CARRITO
-const cleanCartProces = () => {
-    cart = [];
+const cart_clean_process = () => {
+    cart_list = [];
 
-    inventory.forEach(product => {
-        updateCountProduct(product.id, 0);
+    inventory_list.forEach(product => {
+        update_count_products(product.id, 0);
         product.cart_add_qty=0;
     })
 
-    saveCartStorage(cart)
-    updateCountCart();
+    save_cart_to_storage(cart_list)
+    cart_update_count();
 };
 
 // ACTUALIZAR PANTALLAS
-const updateCountCart = () => {
-    let coutProducts = 0;
-    const countCart = document.getElementById("cart_count");
+const cart_update_count = () => {
+    let count_products = 0;
+    const cart_count = document.getElementById("cart_count");
 
-    cart.forEach(product => {
-        coutProducts += parseInt(product.cart_add_qty)
+    cart_list.forEach(product => {
+        count_products += parseInt(product.cart_add_qty)
     })
-    if (coutProducts > 0 ) {
-        countCart.classList.remove("visually-hidden")
-        countCart.innerHTML = `${coutProducts}+`
+    if (count_products > 0 ) {
+        cart_count.classList.remove("visually-hidden")
+        cart_count.innerHTML = `${count_products}+`
     }else {
-        countCart.classList.add("visually-hidden")
+        cart_count.classList.add("visually-hidden")
     }
 };
 
-const updateCountProduct = (id, qty) => {
-    let productCardQty = document.getElementById(`product_card_id_qty_${id}`)
+const update_count_products = (id, qty) => {
+    let product_card_qty = document.getElementById(`product_card_id_qty_${id}`)
     if (qty > 0) {
-        productCardQty.innerHTML = qty
+        product_card_qty.innerHTML = qty
     }else {
-        productCardQty.innerHTML = ""
+        product_card_qty.innerHTML = ""
     }
 }
 
 // PAGOS
-const payedProducts = document.getElementById("payed_modal");
-payedProducts.addEventListener("click", () => {
-    processPayment();
+const paid_products = document.getElementById("paid_products");
+paid_products.addEventListener("click", () => {
+    process_payments();
 })
 
-const processPayment = () => {
+const process_payments = () => {
 
-    cart.forEach(product_cart => {
+    cart_list.forEach(product_cart => {
 
-        let found_product_in_inventory = inventory.find(product_invent => product_invent.id === product_cart.id);
-        let found_product_in_inventory_idx = inventory.indexOf(found_product_in_inventory);
+        let found_product_in_inventory_list = inventory_list.find(product_invent => product_invent.id === product_cart.id);
+        let found_product_in_inventory_list_idx = inventory_list.indexOf(found_product_in_inventory_list);
 
         let update_product = new Product(
-            found_product_in_inventory.id,
-            found_product_in_inventory.name, 
-            found_product_in_inventory.thumbnail_datail, 
-            found_product_in_inventory.description, 
-            found_product_in_inventory.thumbnail, 
-            found_product_in_inventory.price, 
-            found_product_in_inventory.tags, 
-            parseInt(found_product_in_inventory.qty) - parseInt(product_cart.cart_add_qty)
-            );
+            found_product_in_inventory_list.id,
+            found_product_in_inventory_list.name, 
+            found_product_in_inventory_list.thumbnail_datail, 
+            found_product_in_inventory_list.description, 
+            found_product_in_inventory_list.thumbnail, 
+            found_product_in_inventory_list.price, 
+            found_product_in_inventory_list.tags, 
+            parseInt(found_product_in_inventory_list.qty) - parseInt(product_cart.cart_add_qty)
+        );
 
-        inventory.splice(found_product_in_inventory_idx, 1)
-        inventory.push(update_product)
+        inventory_list.splice(found_product_in_inventory_list_idx, 1)
+        inventory_list.push(update_product)
 
-        cleanCartProces();
-        showProductsMarket();
-        renderCart();
+        cart_clean_process();
+        show_products_market();
+        assemble_cart();
     });
 
     
 }
 
 // DEBE EXISTIR ANTES DE ACTUALIZAR EL CARRITO DESDE EL LOCAL STORAGE
-showProductsMarket();
+show_products_market();
 
 // STORAGE 
 // CARGA DE CARRITO DE COMPRAS 
 if (localStorage.getItem("storage_cart")){
-    cart = JSON.parse(localStorage.getItem("storage_cart"))
-    updateCountCart();
-    renderCart();
+    cart_list = JSON.parse(localStorage.getItem("storage_cart"))
+    cart_update_count();
+    assemble_cart();
 
-    cart.forEach(product => {
-        updateCountProduct(product.id, product.cart_add_qty);
+    cart_list.forEach(product => {
+        update_count_products(product.id, product.cart_add_qty);
     });
 }
 
-const saveCartStorage = (cart) => {
-    localStorage.setItem("storage_cart", JSON.stringify(cart));
+const save_cart_to_storage = (cart_list) => {
+    localStorage.setItem("storage_cart", JSON.stringify(cart_list));
     
 }
 
 
-// buscador.....
-
-// taer productos por fetch.....
-
-// (libre... ???)
+/*
+    PROXIMO........
+    1. buscador por tags..
+    2. taer productos por fetch.....
+    3. (agregar librerias...... ???)
+*/
