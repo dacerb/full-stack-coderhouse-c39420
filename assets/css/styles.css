@@ -75,13 +75,13 @@ header {
 }
 
 
-#main .buy .market-section .market_products .card #card-cart img {
+#main .buy .market-section .container_market_products .card #card-cart img {
     border-radius: 0;
     width: 30px;
     height: 30px;
 }  
 
-#main .buy .market-section .market_products .img-producto {
+#main .buy .market-section .container_market_products .img-producto {
     margin: auto;
     margin-top: 20px;
     width: 50%;

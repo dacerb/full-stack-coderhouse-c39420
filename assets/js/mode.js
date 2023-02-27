@@ -1,32 +1,32 @@
-const modeView = document.getElementById("flexSwitchCheckChecked")
-let darkModeCss = document.createElement('link');
+const switchModeView = document.getElementById("flexSwitchCheckChecked")
+let darkModeStyles = document.createElement('link');
 let head = document.getElementsByTagName('head')
 
-darkModeCss.rel = 'stylesheet';
-darkModeCss.href = "./assets/css/dark.css";  
+darkModeStyles.rel = 'stylesheet';
+darkModeStyles.href = "./assets/css/dark.css";  
 
-modeView.addEventListener("change", (event) => {
+switchModeView.addEventListener("change", (event) => {
     
 
     if (event.target.value == 'light'){
-        modeView.value = "dark"
-        head[0].appendChild(darkModeCss)
+        switchModeView.value = "dark"
+        head[0].appendChild(darkModeStyles)
         localStorage.setItem("mode", "dark");
     } else {
-        modeView.value = "light"
+        switchModeView.value = "light"
         localStorage.setItem("mode", "light");
-        head[0].removeChild(darkModeCss)
+        head[0].removeChild(darkModeStyles)
     }
 
 });
 
 const mode = localStorage.getItem("mode")
 if (mode === "dark") {
-    head[0].appendChild(darkModeCss)
-    modeView.checked = false;
-    modeView.value = "dark";
+    head[0].appendChild(darkModeStyles)
+    switchModeView.checked = false;
+    switchModeView.value = "dark";
 } else {
-    head[0].removeChild(darkModeCss)
-    modeView.checked = true;
-    modeView.value = "light";
+    head[0].removeChild(darkModeStyles)
+    switchModeView.checked = true;
+    switchModeView.value = "light";
 }
