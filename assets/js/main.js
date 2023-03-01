@@ -325,7 +325,6 @@ const assemble_cart = () => {
         assemble_cart();
     });
     
-
         
 });
 };
@@ -373,6 +372,7 @@ const process_payments = () => {
 
     cart_list.forEach(product_cart => {
 
+        console.log(product_cart)
         let found_product_in_inventory_list = inventory_list.find(product_invent => product_invent.id === product_cart.id);
         let found_product_in_inventory_list_idx = inventory_list.indexOf(found_product_in_inventory_list);
 
@@ -390,12 +390,11 @@ const process_payments = () => {
         inventory_list.splice(found_product_in_inventory_list_idx, 1)
         inventory_list.push(update_product)
 
-        cart_clean_process();
-        show_products_market();
-        assemble_cart();
     });
 
-    
+    cart_clean_process();
+    show_products_market();
+    assemble_cart();    
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////// PAGOS
 
