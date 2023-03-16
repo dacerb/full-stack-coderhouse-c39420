@@ -2,80 +2,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////// 
 let inventory_list = [];
 let cart_list = [];
+let toastify_elements = [];
 
-
-/// PROXIMAMENTE DATOS A COLECTAR POR FETCH....
-const products_data = [
-    {
-        "id": 0,
-        "name":"Chocolate Caliente",
-        "description":"Una deliciosa mezcla de chocolate, vainilla y leche, decorada con crema batida y salsa de chocolate.",
-        "price":"500",
-        "qty":"10",
-        "thumbnail":"./assets/img/productos_img/chocolate_caliente.png",
-        "thumbnail_datail":"Chocolate Caliente",
-        "tags": ["bebida", "caliente"],
-    },
-    {
-        "id": 1,
-        "name":"Dulce de leche Latte",
-        "description":"Café espresso con dulce de leche, leche al vapor con crema batida y salsa de caramelo.",
-        "price":"545",
-        "qty":"30",
-        "thumbnail":"./assets/img/productos_img/dulce_de_leche_latte.png",
-        "thumbnail_datail":"Dulce de leche Latte",
-        "tags": ["bebida", "caliente"],
-    },{
-        "id": 2,
-        "name":"Cappuccino",
-        "description":"Café espresso, leche vaporizada y abundante espuma de leche.",
-        "price":"245",
-        "qty":"40",
-        "thumbnail":"./assets/img/productos_img/cappuccino.png",
-        "thumbnail_datail":"Cappuccino",
-        "tags": ["bebida", "caliente"],
-    },{
-        "id": 3,
-        "name":"Youthberry",
-        "description":"Una mezcla de té blanco cítrico con toques brillantes de sabor tropical. Con mango, naranja, hibisco y pétalos de rosa.",
-        "price":"415",
-        "qty":"17",
-        "thumbnail":"./assets/img/productos_img/youthberry.png",
-        "thumbnail_datail":"Youthberry",
-        "tags": ["bebida", "caliente"],
-    },
-    {
-        "id": 4,
-        "name":"English Breakfast",
-        "description":"Mezcla de tés negros: Assam de la India, Los tés de Assam añaden toques profundos de malta y té negro y un rico aroma a caramelo. ",
-        "price":"578",
-        "qty":"39",
-        "thumbnail":"./assets/img/productos_img/english_breakfast.png",
-        "thumbnail_datail":"English Breakfast",
-        "tags": ["bebida", "caliente"],
-    },
-    {
-        "id": 5,
-        "name":"Dragon Drink",
-        "description":"Leche de coco con Mango Dragon Fruit, el sabor de esta fruta similar a mezcla ligeramente dulce entre un kiwi y una pera.",
-        "price":"700",
-        "qty":"7",
-        "thumbnail":"./assets/img/productos_img/dragon_drink.png",
-        "thumbnail_datail":"Dragon Drink",
-        "tags": ["bebida", "heladas"],
-    },
-    {
-        "id": 6,
-        "name":"Caramel Frappuccino",
-        "description":"Frappuccino a base de café. Dulce combinación de caramelo, café, leche y hielo, decorado con un remolino de crema batida y caramelo.",
-        "price":"380",
-        "qty":"70",
-        "thumbnail":"./assets/img/productos_img/caramel_frappuccino.png",
-        "thumbnail_datail":"Caramel Frappuccino",
-        "tags": ["bebida", "frio"],
-    } ///////////
-
-]
 
 class Product{
     constructor(id, name, thumbnail_datail, description, thumbnail, price, tags=[], qty, cart_add_qty=0) {
@@ -160,8 +88,31 @@ const generate_card_of_product = (product) => {
 };
 
 
+
 const insert_button = (product, contronl_enabled) => {
 
+    if (!contronl_enabled) {
+        
+        const toastify_element_found = toastify_elements.filter(element => element === product.name)
+        // SOLO MUESTRA UNA VEZ EL PRODUCTO AGOTADO AL RENDERIZAR EL MARKET
+        if (!toastify_element_found.length) {
+            Toastify( {
+                text: `${product.name} Agotado :( `,
+                gravity: "bottom",
+                duration: 10000,
+                position: "right", 
+                className: "info",
+                close: true,
+                avatar: "./assets/img/pet.png",
+                style: {
+                    background: "linear-gradient(to right, #e9ff88, #e9ff88)",
+                }
+            }).showToast();
+
+            toastify_elements.push(product.name)    
+        }
+
+    }
     return `
         <button id="add__id_${product.id}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Agregar Producto" ${contronl_enabled ? "enabled": "disabled"}>+</button>
         <button id="remove__id_${product.id}" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Quitar Producto " ${contronl_enabled ? "enabled": "disabled"}>-</button>

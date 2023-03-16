@@ -183,8 +183,12 @@ header {
 }
 /* ---------> MODAL END */
 
-
-
+/* ---------> TOASTIFY START */
+.toastify {
+    color: var(--dark) !important;
+    font-weight: 800;
+}
+/* ---------> TOASTIFY START*/
 
 
 /* ------- MAPS -------------*/

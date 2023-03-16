@@ -164,3 +164,48 @@ const duracion = Duration.fromObject( {days:3, hours: 5, minutes:30 });
 const fechaMasDuracion = fechaActual.plus(duracion);
 console.log("Fecha + duración: ");
 console.log(fechaMasDuracion.toLocaleString(DateTime.DATETIME_SHORT));
+
+
+Toastify( {
+    text: "Producto agregado al carrito",
+    duration: 3000, 
+    gravity: "top",
+    position: "right", 
+    destination: "https://www.google.com",
+    style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+    }
+}).showToast();
+
+Toastify( {
+    text: "Producto agregado al carrito",
+    duration: 3000, 
+    gravity: "top",
+    position: "right", 
+    destination: "https://www.google.com",
+    style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+    }
+}).showToast();
+
+Toastify( {
+    text: "Producto agregado al carrito",
+    duration: 3000, 
+    gravity: "top",
+    position: "right", 
+    destination: "https://www.google.com",
+    style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+    }
+}).showToast();
+
+Toastify( {
+    text: "Producto agregado al carrito",
+    duration: 3000, 
+    gravity: "top",
+    position: "right", 
+    destination: "https://www.google.com",
+    style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+    }
+}).showToast();
