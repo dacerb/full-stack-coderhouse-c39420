@@ -15,3 +15,5 @@ URL del proyecto: [Link](https://dacerb.github.io/full-stack-coderhouse-c39420/)
 ![Alt text](docs/2.png)
 ---
 ![Alt text](docs/3.png)
+---
+![Alt text](docs/4.png)
