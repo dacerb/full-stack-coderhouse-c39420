@@ -62,7 +62,8 @@ header {
 }
 
 
-
+#main .buy .market-section #card_market_product {
+}
 
 
 #main .buy .market-section .title_market h2{
@@ -74,13 +75,13 @@ header {
 }
 
 
-#main .buy .market-section .market_products .card #card-cart img {
+#main .buy .market-section .container_market_products .card #card-cart img {
     border-radius: 0;
     width: 30px;
     height: 30px;
 }  
 
-#main .buy .market-section .market_products .img-producto {
+#main .buy .market-section .container_market_products .img-producto {
     margin: auto;
     margin-top: 20px;
     width: 50%;
@@ -148,6 +149,40 @@ header {
     color: var(--text_color_dark);
 }
 /* ---------> FOOTER END */
+
+
+/* ---------> MODAL */
+#resume_total_text {
+    font-weight: 800;
+    letter-spacing: var(--space_letter);
+    text-transform: uppercase;
+    color: var(--text_color_lighting);
+    background-color: var(--acent);
+}
+
+
+.modal_custom_stylesear h1 {
+    font-weight: 800;
+    letter-spacing: var(--space_letter);
+    color: var(--tile_color_lighting);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.modal_custom_styles p {
+    letter-spacing: var(--space_letter);
+    color: var(--tile_color_lighting);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+.modal_custom_styles img {
+    margin-left: 50%;
+    width: 50%;
+}
+/* ---------> MODAL END */
+
 
 
 
