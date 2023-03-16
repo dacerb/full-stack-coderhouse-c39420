@@ -91,24 +91,6 @@ class Product{
     };
 };
 
-// CARGA DE PRODUCTOS EN EL EL INVENTARIO
-products_data.forEach(product => {
-
-    // INSTANCIA DE NUEVO PRODUCTO ITERADO
-    let new_product = new Product(
-        product.id,
-        product.name, 
-        product.thumbnail_datail, 
-        product.description, 
-        product.thumbnail, 
-        product.price, 
-        product.tags, 
-        product.qty);
-
-    // ALMACEN DE PRODUCTO
-    inventory_list.push(new_product)
-})
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -270,10 +252,10 @@ const cart_clean_process = () => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////// DISPLAYS  CARRITO
 // ACTUALIZACION DE CARRITO DE COMPRAS
 const show_cart = document.getElementById("show_cart");
-
 show_cart.addEventListener("click", () => {
     assemble_cart();
 });
+
 
 // ARMADO DE CARRITO
 const assemble_cart = () => {
@@ -398,24 +380,41 @@ const process_payments = () => {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////// PAGOS
 
+////////////////////////////////////////////////////////////////////////////////////////////////////// STORAGE
+const save_cart_to_storage = (cart_list) => {
+    localStorage.setItem("storage_cart", JSON.stringify(cart_list));
+    
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////// STORAGE
 
 
 
 
+
+// CARGA DE PRODUCTOS EN EL EL INVENTARIO
+products_data.forEach(product => {
+
+    // INSTANCIA DE NUEVO PRODUCTO ITERADO
+    let new_product = new Product(
+        product.id,
+        product.name, 
+        product.thumbnail_datail, 
+        product.description, 
+        product.thumbnail, 
+        product.price, 
+        product.tags, 
+        product.qty);
+
+    // ALMACEN DE PRODUCTO
+    inventory_list.push(new_product)
+})
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// RENDER DE PRODUCTOS
 // DEBE EXISTIR ANTES DE ACTUALIZAR EL CARRITO DESDE EL LOCAL STORAGE
 show_products_market();
-////////////////////////////////////////////////////////////////////////////////////////////////////// RENDER DE PRODUCTOS
 
 
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////// STORAGE
 // CARGA DE CARRITO DE COMPRAS 
 if (localStorage.getItem("storage_cart")){
     cart_list = JSON.parse(localStorage.getItem("storage_cart"))
@@ -427,11 +426,7 @@ if (localStorage.getItem("storage_cart")){
     });
 }
 
-const save_cart_to_storage = (cart_list) => {
-    localStorage.setItem("storage_cart", JSON.stringify(cart_list));
-    
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////// STORAGE
+
 
 
 /*
