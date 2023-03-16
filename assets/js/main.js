@@ -388,18 +388,3 @@ fetch(json_inventory)
     .catch(error => {
         console.log(error)
     });
-
-
-
-
-/*
-
-
-
-
-    PROXIMO........
-    1. buscador por tags..
-    3. (agregar librerias...... ???)
-
-
-*/
