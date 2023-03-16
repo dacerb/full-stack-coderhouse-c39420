@@ -131,7 +131,6 @@ const show_products_market = () => {
 
 const generate_card_of_product = (product) => {
 
-    console.log("aadasd")
     const contronl_enabled = parseInt(product.qty) > 0
     const card = document.createElement("div");
     
@@ -354,7 +353,6 @@ const process_payments = () => {
 
     cart_list.forEach(product_cart => {
 
-        console.log(product_cart)
         let found_product_in_inventory_list = inventory_list.find(product_invent => product_invent.id === product_cart.id);
         let found_product_in_inventory_list_idx = inventory_list.indexOf(found_product_in_inventory_list);
 
@@ -385,46 +383,60 @@ const save_cart_to_storage = (cart_list) => {
     localStorage.setItem("storage_cart", JSON.stringify(cart_list));
     
 }
+
+const local_storage_get_item = () => {
+    if (localStorage.getItem("storage_cart")){
+        cart_list = JSON.parse(localStorage.getItem("storage_cart"))
+        cart_update_count();
+        assemble_cart();
+    
+        cart_list.forEach(product => {
+            update_count_products(product.id, product.cart_add_qty);
+        });
+    }
+    
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////// STORAGE
 
 
 
+// API CALL LOAD PRODUCTS
+const json_inventory = "assets/json/inventory.json";
 
+fetch(json_inventory)
+    .then(respuesta => respuesta.json())
+    .then((datos) => {
 
-// CARGA DE PRODUCTOS EN EL EL INVENTARIO
-products_data.forEach(product => {
+        // CARGA DE PRODUCTOS EN EL EL INVENTARIO
+        datos.forEach(product => {
 
-    // INSTANCIA DE NUEVO PRODUCTO ITERADO
-    let new_product = new Product(
-        product.id,
-        product.name, 
-        product.thumbnail_datail, 
-        product.description, 
-        product.thumbnail, 
-        product.price, 
-        product.tags, 
-        product.qty);
+            // INSTANCIA DE NUEVO PRODUCTO ITERADO
+            let new_product = new Product(
+                product.id,
+                product.name, 
+                product.thumbnail_datail, 
+                product.description, 
+                product.thumbnail, 
+                product.price, 
+                product.tags, 
+                product.qty);
 
-    // ALMACEN DE PRODUCTO
-    inventory_list.push(new_product)
-})
+            // ALMACEN DE PRODUCTO
+            inventory_list.push(new_product)
+        });
 
+    }).then( () => {
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////// RENDER DE PRODUCTOS
+        // DEBE EXISTIR ANTES DE ACTUALIZAR EL CARRITO DESDE EL LOCAL STORAGE
+        show_products_market();
 
-////////////////////////////////////////////////////////////////////////////////////////////////////// RENDER DE PRODUCTOS
-// DEBE EXISTIR ANTES DE ACTUALIZAR EL CARRITO DESDE EL LOCAL STORAGE
-show_products_market();
-
-
-// CARGA DE CARRITO DE COMPRAS 
-if (localStorage.getItem("storage_cart")){
-    cart_list = JSON.parse(localStorage.getItem("storage_cart"))
-    cart_update_count();
-    assemble_cart();
-
-    cart_list.forEach(product => {
-        update_count_products(product.id, product.cart_add_qty);
+        // CARGA DE CARRITO DE COMPRAS 
+        local_storage_get_item();
+    })
+    .catch(error => {
+        console.log(error)
     });
-}
 
 
 
@@ -436,7 +448,6 @@ if (localStorage.getItem("storage_cart")){
 
     PROXIMO........
     1. buscador por tags..
-    2. taer productos por fetch.....
     3. (agregar librerias...... ???)
 
 
