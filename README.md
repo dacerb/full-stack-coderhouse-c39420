@@ -1,4 +1,4 @@
-# Tercer Pre Entrega Coderhouse JavaScript
+# Entrega Proyecto Final -  Coderhouse JavaScript
 > C39420
 ---
 
